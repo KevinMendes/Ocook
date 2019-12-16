@@ -231,3 +231,7 @@ On va commencer par l'intégration de la page d'accueil.
 
 Indices
 A rajouter en cours de prod
+composer require symfony/var-dumper
+composer require altorouter/altorouter
+composer dump-autoload
+
