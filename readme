@@ -1,9 +1,9 @@
-Ocook
+# Ocook
 Création d'un site factice regroupant des recettes de cuisine. Ce projet est à but éducatif. Ce cours est à destination des étudiants de l'école Oclock
 
 Objectif : Assimiler git et github, comprendre et utiliser la POO, les API Rest, les requêtes AJAX, JQuery, html & css, bootstrap, SQL via phpmyadmin, structure MVC, méthodologie AGILE, templating et quelques élements de composer. (altorooter principalement)
 
-Avant propos
+##Avant propos
 Prérequis
 Avoir git installé et configuré, un serveur apache et une base de donnée mySql.
 
@@ -11,7 +11,7 @@ Notions de HTML, CSS, PHP, mySql, javascript, et POO.
 
 Et oui c'est pas un cours, mais une application !
 
-Difficulté et aide
+## Difficulté et aide
 Afin de permettre à tous de réussir ce projet sans frustration, chaque étape va être définie en 3 niveaux de difficulté représentés par des spoilers.
 
 Les étapes seront données en mode guidé, avec des informations basiques, comme par exemple le nom des variables à utiliser. Vous serez libre de faire à votre manière et si ça marche youpi. Si vous n'y arrivait pas vous aurez la possibilité de déplier les menus d'indices corresponds à l'étape. Dans ces derniers vous trouverez des liens renvoyant à la documentation (pour la partie dev). Dans ces mêmes indices, si vous n'y arrivez toujours pas, vous pourrez une fois encore déplier pour cette fois-ci obtenir la réponse de cette étape.
@@ -19,13 +19,13 @@ Les étapes seront données en mode guidé, avec des informations basiques, comm
 Sémantique
 Comme je viens de le préciser, vous aurez les réponses fournies. Afin de ne pas être bloqué plus loin par un soucis de code différent rendant cette correction innutile je vous conseil soit, de remplacer votre code par celui-ci, en le relisant bien-sûr pour le comprendre, ce qui ne devrait pas être bien difficile si vous aviez déjà réussi de votre côté. La seconde solution, (mais qui peut tout de même potentiellement amener des problèmes sur la durée), sera de bien respecter les noms qui vous seront proposés pour les différentes variables et autres, et de bien respecter le contenu attendu dedans.
 
-Organisation
+## Organisation
 Ce projet est faisable seul. Si vous souhaitez vous perfectionner ou revoir des notions, il sera tout à fait adapté. Toutefois, l'organisation de ce projet sera également adapté à une petite équipe de développeurs (max 4) vous permettant de vous confronter au travail collaboratif.
 
-1/ Commençons par le commencement
+# 1/ Commençons par le commencement
 Puisqu'il s'agit d'un projet de dev, nous allons commencer par ne pas dev! Et oui, chaque chose en son temps, et commençons déjà par nous organiser! Je vous rassure nous allons faire vite!
 
-1.1 Cahier des charges
+## 1.1 Cahier des charges
 Notre client souhaite réaliser un site internet responsive permettant à ses utilisateurs de pouvoir consulter ses recettes. Il a déjà pensé à un plan !
 
 Page d'accueil : - Visuel : il souhaite que le site ressemble à cette maquette faite par son chien aveugle :
@@ -34,6 +34,7 @@ Page d'accueil : - Visuel : il souhaite que le site ressemble à cette maquette 
 - Sur la page d'accueil les 6 dernières recettes qu'il a créé
 - Quand on clique sur la carte d'une recette, on veut arriver sur la page correspondante à la recette
 - Un menu déroulant permettant d'afficher différents-types d'aliment (poulet, boeuf, poisson, végétarien), renvoyant sur une page ressemblant à celle de l'accueil mais sans limitation de nombre de recette
+
 Page de recette :
 
 - La recette est faite en 3 étapes : Préparation des ingrédients, cuissons, et un message bon apétit
@@ -42,8 +43,8 @@ Page de recette :
 AdminPanel :
 
 - Le client souhaite pouvoir créer, modifier et supprimer ses recettes depuis un admin panel sécurisé par mot de passe.
-1.2 Methodologie AGILE
-1.2.1 Méthodologie Agile
+## 1.2 Methodologie AGILE
+### 1.2.1 Méthodologie Agile
 (Ce qui va venir n'est qu'un copier coller raccourci du manifeste que vous trouverez en fin de ce point)
 La méthodologie Agile est basée sur le manifeste Agile. Ce manifeste fait ressortir 4 points fondamentaux à ce moyen d'organisation.
 
@@ -83,7 +84,7 @@ Les meilleures architectures, les meilleures spécifications de besoins, et les 
 
 Rendez-vous sur le manifeste Agile. - Original : Manifesto for Agile Software Development pour voir son contenue un peu plus dévelppé de la chose. Ce que vous venez de lire
 
-1.2.2 Scrum
+### 1.2.2 Scrum
 Scrum, est la manière d'implémentation des méthodes Agile la plus connues, mais n'est pas la seule. Mais nous, on va se concentrer sur ça!
 
 Le scrum est une mêlée de rugby. Mais pas de panique, on va rester assis.
