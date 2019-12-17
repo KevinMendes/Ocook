@@ -101,7 +101,7 @@ Scrum master
 - Pluridisciplinaire, elle ne regroupe pas que des devs, mais aussi les services RH, les analystes, les designers, le gentils personnels en charge de l'entretien des locaux et qui nous permet de bien travailler (ok je pousse un peu loin, mais ils participent aussi à la réalisation des projets! Et je range de suite mon panneau de bisounours), etc ..., ils construisent le produits et travaillent TOUS ensemble pour permettre d'atteindre les objectifs.
 L'équipe et le Scrum Master, se réunissement pour déterminer la durée et ce qui devra être fait durant ce sprint pour réaliser des livrables tangibles. L'équipe se réunit également chaque jour, pour rapidement pour expliquer ce qu'ils vont faire dans la journée, ce qui leur a posé problème la veille.
 
-1.2.3.1 Product Backlog
+#### 1.2.3.1 Product Backlog
 On y détermine tout ce qui doit être fait, c'est un document qui sert de feuille de route et qui est maintenu par le product owner. Ce document doit être fait d'une manière clair.
 
 Priorité	Élement	Détails	Effort	Sprint
@@ -112,7 +112,7 @@ Priorité	Élement	Détails	Effort	Sprint
 ...	...	...	-	-
 L'effort et le sprint sont bien sûr édité par l'équipe.
 
-1.2.3.2 Sprint Backlog
+#### 1.2.3.2 Sprint Backlog
 Le Sprint Backlog est le Todo, des éléments identifés dans le product backlog et qui vont être fait durant le sprint.
 
 Les phases
@@ -162,7 +162,7 @@ Nous utiliseront Trello pour nous organiser
 
 Pour plus d'information sur le Scrum framework
 
-1.3 Trello
+## 1.3 Trello
 Enfin un peu de pratique!
 
 Nous allons créer un tableau Trello et y inviter tous les membres de l'équipe.
@@ -178,28 +178,28 @@ Créez deux nouvelles étiquettes l'une nomée BackOffice, qui nous servira à r
 
 Archiver cette carte.
 
-1.3.2 Préparation du ProductBaclog
+### 1.3.2 Préparation du ProductBaclog
 Voilà maintenant, on va préparer notre Product Backlog qui servira à tout notre projet. Nous allong également ajouter les labels correspondant qui seront donnés entre parenthèse, certains n'en auront pas, c'est normal
 
-1.3.2.1 L'intégration
+### 1.3.2.1 L'intégration
 Première étape on doit penser à l'intégration. On va créer une première carte "Intégration maquette page d'accueil" (template) et une seconde "intégration maquette page de recette" (template). On utilisera celle de l'accueil pour les pages catégories, donc pas besoin de l'intégrer.
 
 Nous devront ensuite templater cette intégration, noous allong donc créer une carte "templating de l'intégration".
 
-1.3.2.2 BDD
+### 1.3.2.2 BDD
 C'est un site composé de recettes, nous allons donc créer une BDD pour les récupérer. Créez une carte "Modélisation et création de la BDD" (backoffice)
 
-1.3.2.2 font-end
-1.3.2.1 jQuery
+#### 1.3.2.2 font-end
+#### 1.3.2.1 jQuery
 Notre site va utiliser plusieurs petites app jQuery.
 
 Une pour gérer l'affichage des recettes sur la page d'accueil. Créez une carte Jquery affichage recette page d'accueil (template) (recipe)
 
 Une pour l'afficage du bouton "c'est fait" la demande vient directement d'une user story on créait alors une carte "en tant qu'utilisateur je veux avoir un bouton "c'est fait me permettant de cacher la préparation des ingrédients" -Une "en tant qu'utilisateur je veux avoir un bouton "c'est fait" me permettant d'ouvrir une modale me souhaitant un bon appétit" -Une "en tant qu'utilisateur je veux que cette modale ait un bouton me permettant de revenir à ma recette, ou à la page d'accueil"
 
-1.2.1.2 Bootstrap
+#### 1.2.1.2 Bootstrap
 En tant qu'utilisateur je veux avoir un menu me permettant de sélectioner un type de produit et afficher ces recette sur une nouvelle page (recipe) (template)
-1.3.2.3 BackOffice
+#### 1.3.2.3 BackOffice
 On reprend notre user story et on accélère.
 
 En tant qu'administrateur je veux accéder à un panel sécurisé par mot de passe (backoffice)
@@ -209,14 +209,15 @@ En tant qu'administrateur je veux pouvoir supprimer une recette (backoffice)
 Un gros titre pour un point important
 Si vous travaillez en équipe vous n'êtes pas obligé de suivre les sprints dans le même ordre, ou même de faire les mêmes sprint! A vous de juger
 
-2 1er Sprint
+# 2 1er Sprint
 Ouf on va enfin coder! C'est partie pour les joies de l'intégration.
 
-2.1 Organisation du sprint
+## 2.1 Organisation du sprint
 INFO DU JOUR
 Notre client à oublié de préciser! Il veut un footer en plus, une simple bande noir avec écrit en blanc "Copyright Ocook"! Oubliez pas d'ajouter une carte trello "en tant que client je veux avoir un footer noir avec écrit en blanc copyright Occok sur toutes mes pages" avec le label correspond!
 
 FIN DE L'INFO DU JOUR
+
 Je vous propose un sprint d'une semaine pour ce premier. En effet il ne sera question que d'intégration, il devrait être assez rapide. Cette carte nous servira pour la deadline. Une semaine de travail correspond à 5 jours, je vous propose de compter 5 jours à partir du début de ce sprint pour générer la deadline. Pour afficher une deadline, cliquez sur cette carte, et choisissez "Date limite" dans les options. Si vous travaillez à plusieurs, n'oubliez pas le daily scrum chaque jours.
 
 Nous allons créer une carte "Sprint 1" dans sprint Backlog 4 tâches se démarque : Templating de l'intégration, intégration page d'accueil et intégration page recette, et l'ajout du footer (et oui le sprint n'a pas commencé on peut l'ajouter). On va alors les ajouter à notre sprintBacklog (un simple glissé déposé depuis la partie Productbacklog)
@@ -225,10 +226,25 @@ Le templating me semble être la partie la plus simple de ce sprint, il ne s'agi
 
 Pour la maquette de la recette c'est déjà plus complexe. Au final le header et le footer, seront les mêmes que sur la page d'accueil, donc je n'aurais que le corps à coder. Alors j'aurais mis un 8 car ça reste tout de même complexe, surtout que ce sera en 3 parties! (préparation, cuisson, et le modal)
 
-2.2 Réalisation du sprint
+## 2.2 Réalisation du sprint
 On oublie pas de déplacer la carte sur la quelle on travail dans "doing".
 
 On va commencer par l'intégration de la page d'accueil.
+
+### Etape 1 Structure de la page
+
+On créait la structure basique avec le head et body.
+On y inclu le CDN de bootstrap
+
+### Etape 2 navbar
+
+Dans la balise adapté dans le body, on créait notre navbar
+
+### Etape 3 body
+
+### Etape 4 footer
+
+### Etape 5 page recette
 
 Indices
 A rajouter en cours de prod
