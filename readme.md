@@ -33,7 +33,7 @@ Page d'accueil : - Visuel : il souhaite que le site ressemble à cette maquette 
 ////AJOUTER LE VISUEL////
 - Sur la page d'accueil les 6 dernières recettes qu'il a créé
 - Quand on clique sur la carte d'une recette, on veut arriver sur la page correspondante à la recette
-- Un menu déroulant permettant d'afficher différents-types d'aliment (poulet, boeuf, poisson, végétarien), renvoyant sur une page ressemblant à celle de l'accueil mais sans limitation de nombre de recette
+- Un menu déroulant permettant d'afficher différents-types de viandes (poulet, boeuf, poisson, végétarien), renvoyant sur une page ressemblant à celle de l'accueil mais sans limitation de nombre de recette
 
 Page de recette :
 
@@ -43,6 +43,7 @@ Page de recette :
 AdminPanel :
 
 - Le client souhaite pouvoir créer, modifier et supprimer ses recettes depuis un admin panel sécurisé par mot de passe.
+
 ## 1.2 Methodologie AGILE
 ### 1.2.1 Méthodologie Agile
 (Ce qui va venir n'est qu'un copier coller raccourci du manifeste que vous trouverez en fin de ce point)
@@ -239,6 +240,15 @@ On y inclu le CDN de bootstrap
 ### Etape 2 navbar
 
 Dans la balise adapté dans le body, on créait notre navbar
+
+https://getbootstrap.com/docs/4.3/getting-started/introduction/
+
+https://getbootstrap.com/docs/4.3/components/navbar/
+
+Pour le logo et le bg : 
+
+https://getbootstrap.com/docs/4.0/utilities/colors/
+https://getbootstrap.com/docs/4.0/utilities/borders/
 
 ### Etape 3 body
 
