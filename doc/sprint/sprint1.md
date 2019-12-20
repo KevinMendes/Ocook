@@ -56,7 +56,7 @@ https://getbootstrap.com/docs/4.0/utilities/borders/
 
 <details><summary>Navbar</summary>
 ``` html
-<header>
+    <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-success">
             <a class="navbar-brand" href="#"><span class="text-light">O</span><span
                     class="text-success bg-light border border-left-0 border rounded-circle">cook</span></a>
@@ -104,7 +104,7 @@ https://www.w3schools.com/css/css_dimension.asp
 <details><summary>Solution</summary>
 </details>
 ``` html
-<main>
+    <main>
         <div class="container mx-auto my-4">
             <div class="row d-flex justify-content-around">
                 <div class="card col-lg-3 m-2">
@@ -167,25 +167,26 @@ https://www.w3schools.com/css/css_dimension.asp
 
     ``` css
 /** GENERAL CSS **/
-html {
-    padding: 0;
-    margin: 0;
-}
-body {
-    font-size: 18px;
-    background: rgb(115,62,5);
-background: linear-gradient(90deg, rgba(115,62,5,1) 0%, rgba(190,85,9,1) 100%, rgba(230,144,31,1) 100%);
+    html {
+        padding: 0;
+        margin: 0;
+    }
+    body {
+        font-size: 18px;
+        background: rgb(115,62,5);
+        background: linear-gradient(90deg, rgba(115,62,5,1) 0%, rgba(190,85,9,1) 100%, rgba(230,144,31,1) 100%);
 
-}
+    }
 /** CARD CUSTOM CSS **/
-.card{
-    width: 18rem;
-}
+    .card{
+        width: 18rem;
+    }
 
-.card-img-top{
-   max-height: 180px;
-   width: auto;
-}```
+    .card-img-top{
+        max-height: 180px;
+        width: auto;
+    }
+    ```
 </details>
 </details>
 
@@ -203,8 +204,8 @@ Allez je suis gentil pour les bouttons en bootstrap.
 https://getbootstrap.com/docs/4.0/components/buttons/
 
 <details><summary>Solution</summary>
-    ```html
-    <main>
+    ``` html
+        <main>
         
             <div class="card border-success mx-auto my-4 w-75">
                 <div class="card-header bg-success">Recette : dev en sauce</div>
@@ -236,6 +237,7 @@ https://getbootstrap.com/docs/4.0/components/buttons/
             </div>
         </div>
         
-    </main>```
-    </details>
+    </main>
+    ```
+</details>
 </details>
