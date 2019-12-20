@@ -55,6 +55,7 @@ https://getbootstrap.com/docs/4.0/utilities/borders/
 <details><summary>Solution</summary
 
 <details><summary>Navbar</summary>
+``` html
 <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-success">
             <a class="navbar-brand" href="#"><span class="text-light">O</span><span
@@ -80,7 +81,7 @@ https://getbootstrap.com/docs/4.0/utilities/borders/
                 </ul>
             </div>
         </nav>
-    </header>
+    </header>```
 </details>
 
 </details>
@@ -90,6 +91,7 @@ https://getbootstrap.com/docs/4.0/utilities/borders/
 On veut un background avec un gradient. Sur ce body, on notre client veut voir afficher les 6 dernieres recette. On en disposera 3 par ligne sur 2 lignes. En format mobile <576px on ne veut qu'une carte par ligne, et à 768px nous en voulons 2 par ligne. on en veut seulement 2.
 Ces 6 recettes prendront la forme de carte, avec d'abord une image en height 180px, un titre, une courte description et un lien vers la recette.
 
+<details><summary>documentation utiles</summary>
 Pour le background https://developer.mozilla.org/fr/docs/Web/CSS/linear-gradient
 
 Pour les cartes et la gestion de leur disposition :
@@ -99,15 +101,141 @@ https://getbootstrap.com/docs/4.0/utilities/spacing/
 
 Pour la taille des images :
 https://www.w3schools.com/css/css_dimension.asp
+<details><summary>Solution</summary>
+</details>
+``` html
+<main>
+        <div class="container mx-auto my-4">
+            <div class="row d-flex justify-content-around">
+                <div class="card col-lg-3 m-2">
+                    <img class="card-img-top center mt-1" src="utils/images/img1.jpg" alt="Churos">
+                    <div class="card-body">
+                        <h5 class="card-title">Tarte à la claque</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio iure consequatur aperiam repudiandae ipsam exercitationem dolorum rem quaerat vitae officia?
+                            content.</p>
+                        <a href="#" class="btn btn-primary">Voir la recette</a>
+                    </div>
+                </div>
+                <div class="card col-lg-3 m-2">
+                    <img class="card-img-top center mt-1" src="utils/images/img1.jpg" alt="Churos">
+                    <div class="card-body">
+                        <h5 class="card-title">Churros de m&m's</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis ratione in repudiandae consequuntur ad repellendus vero numquam eius! Earum, eligendi!
+                            </p>
+                        <a href="#" class="btn btn-primary">Voir la recette</a>
+                    </div>
+                </div>
+                <div class="card col-lg-3 m-2">
+                    <img class="card-img-top center mt-1" src="utils/images/img1.jpg" alt="Churos">
+                    <div class="card-body">
+                        <h5 class="card-title">Recette random #2</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis ratione in repudiandae consequuntur ad repellendus vero
+                        numquam eius! Earum, eligendi!</p>
+                        <a href="#" class="btn btn-primary">Voir la recette</a>
+                    </div>
+                </div>
+                <div class="card col-lg-3 m-2">
+                    <img class="card-img-top center mt-1" src="utils/images/img1.jpg" alt="Churos">
+                    <div class="card-body">
+                        <h5 class="card-title">Croquette pour oiseau</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis ratione in repudiandae consequuntur ad repellendus vero
+                        numquam eius! Earum, eligendi!</p>
+                        <a href="#" class="btn btn-primary">Voir la recette</a>
+                    </div>
+                </div>
+                <div class="card col-lg-3 m-2">
+                    <img class="card-img-top center mt-1" src="utils/images/img1.jpg" alt="Churos">
+                    <div class="card-body">
+                        <h5 class="card-title">Canard au Pierre</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis ratione in repudiandae consequuntur ad repellendus vero
+                        numquam eius! Earum, eligendi!</p>
+                        <a href="#" class="btn btn-primary">Voir la recette</a>
+                    </div>
+                </div>
+                <div class="card col-lg-3 m-2">
+                    <img class="card-img-top center mt-1" src="utils/images/img1.jpg" alt="Churos">
+                    <div class="card-body">
+                        <h5 class="card-title">O'clock's special cake</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis ratione in repudiandae consequuntur ad repellendus vero
+                        numquam eius! Earum, eligendi!</p>
+                        <a href="#" class="btn btn-primary">Voir la recette</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>```
+
+    ``` css
+/** GENERAL CSS **/
+html {
+    padding: 0;
+    margin: 0;
+}
+body {
+    font-size: 18px;
+    background: rgb(115,62,5);
+background: linear-gradient(90deg, rgba(115,62,5,1) 0%, rgba(190,85,9,1) 100%, rgba(230,144,31,1) 100%);
+
+}
+/** CARD CUSTOM CSS **/
+.card{
+    width: 18rem;
+}
+
+.card-img-top{
+   max-height: 180px;
+   width: auto;
+}```
+</details>
+</details>
+
 ### Etape 4 footer
 
 Rien de bien compliqué ici, vous aurez aucune aide. 
 
 ### Etape 5 page recette
 
-Indices
-A rajouter en cours de prod
-composer require symfony/var-dumper
-composer require altorouter/altorouter
-composer dump-autoload
+On est de VRAI dev! Alors on fait des copiers collés ! :D 
 
+Rien de bien différent, les spoilers précédents ou ce que vous avez déjà fait suffirant!
+Allez je suis gentil pour les bouttons en bootstrap.
+<details><summary>Button</summary>
+https://getbootstrap.com/docs/4.0/components/buttons/
+
+<details><summary>Solution</summary>
+    ```html
+    <main>
+        
+            <div class="card border-success mx-auto my-4 w-75">
+                <div class="card-header bg-success">Recette : dev en sauce</div>
+                <div class="card-body">
+
+                    <h5 class="card-title">Préparation des ingrédients</h5>
+                </div>
+                <ul class="list-group list-group-flush"></ul>
+                <li class="list-group-item">
+                    <p class="card-text">Etape 1 : Emincer un helper</p>
+                </li>
+                <li class="list-group-item">
+                    <p class="card-text">Etape 2 : Couper en cube un dev</p>
+                </li>
+                <div class="card-body mx-auto">
+                    <button type="button" class="btn btn-success">C'est fait</button>
+                </div>
+
+
+                <div class="card-body">
+                    <h5 class="card-title">Cuisson</h5>
+                </div>
+                <ul class="list-group list-group-flush"></ul>
+                <li class="list-group-item">Etape 1 : Mettre la préparation dans une vessie de jument</li>
+                <li class="list-group-item">Etape 2 : Mettre à 1240° dans un volcan pendant 3 secondes</li>
+                <div class="card-body mx-auto">
+                    <button type="button" class="btn btn-success">C'est fait</button>
+                </div>
+            </div>
+        </div>
+        
+    </main>```
+    </details>
+</details>

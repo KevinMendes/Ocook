@@ -1,3 +1,5 @@
+
+/** GENERAL CSS **/
 html {
     padding: 0;
     margin: 0;
@@ -8,7 +10,7 @@ body {
 background: linear-gradient(90deg, rgba(115,62,5,1) 0%, rgba(190,85,9,1) 100%, rgba(230,144,31,1) 100%);
 
 }
-
+/** CARD CUSTOM CSS **/
 .card{
     width: 18rem;
 }
@@ -18,7 +20,4 @@ background: linear-gradient(90deg, rgba(115,62,5,1) 0%, rgba(190,85,9,1) 100%, r
    width: auto;
 }
 
-
-
-/* Navbar */
 

@@ -193,15 +193,16 @@ Nous devront ensuite templater cette intégration, noous allong donc créer une 
 ### 1.3.2.2 BDD
 C'est un site composé de recettes, nous allons donc créer une BDD pour les récupérer. Créez une carte "Modélisation et création de la BDD" (backoffice)
 
-#### 1.3.2.2 font-end
-#### 1.3.2.1 jQuery
+#### 1.3.2.3 font-end
+
+##### 1.3.2.3.1 jQuery
 Notre site va utiliser plusieurs petites app jQuery.
 
 Une pour gérer l'affichage des recettes sur la page d'accueil. Créez une carte Jquery affichage recette page d'accueil (template) (recipe)
 
-Une pour l'afficage du bouton "c'est fait" la demande vient directement d'une user story on créait alors une carte "en tant qu'utilisateur je veux avoir un bouton "c'est fait me permettant de cacher la préparation des ingrédients" -Une "en tant qu'utilisateur je veux avoir un bouton "c'est fait" me permettant d'ouvrir une modale me souhaitant un bon appétit" -Une "en tant qu'utilisateur je veux que cette modale ait un bouton me permettant de revenir à ma recette, ou à la page d'accueil"
+Une pour l'afficage du bouton "c'est fait" la demande vient directement d'une user story on crée alors une carte "en tant qu'utilisateur je veux avoir un bouton "c'est fait "me permettant de cacher la préparation des ingrédients" -Une "en tant qu'utilisateur je veux avoir un bouton "c'est fait" me permettant d'ouvrir une modale me souhaitant un bon appétit" -Une "en tant qu'utilisateur je veux que cette modale ait un bouton me permettant de revenir à ma recette, ou à la page d'accueil"
 
-#### 1.2.1.2 Bootstrap
+##### 1.2.1.2.2 Bootstrap
 En tant qu'utilisateur je veux avoir un menu me permettant de sélectioner un type de produit et afficher ces recette sur une nouvelle page (recipe) (template)
 #### 1.3.2.3 BackOffice
 On reprend notre user story et on accélère.
