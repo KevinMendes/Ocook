@@ -105,12 +105,15 @@ L'équipe et le Scrum Master, se réunissement pour déterminer la durée et ce 
 #### 1.2.3.1 Product Backlog
 On y détermine tout ce qui doit être fait, c'est un document qui sert de feuille de route et qui est maintenu par le product owner. Ce document doit être fait d'une manière clair.
 
-Priorité	Élement	Détails	Effort	Sprint
-1	En tant que ... je veux ...	...	5	1
-2	Amélioration des performances de ...	...	13	3
-3	Mise à jour des serveurs ...	...	8	1
-4	En tant que ... je veux ...	...	21	2
-...	...	...	-	-
+
+| Priorité | Élement                              | Détails | Effort | Sprint |
+| -------- | ------------------------------------ | ------- | ------ | ------ |
+| 1        | En tant que ... je veux ...          | ...     | 5      | 1      |
+| 2        | Amélioration des performances de ... | ...     | 13     | 3      |
+| 3        | Mise à jour des serveurs ...         | ...     | 8      | 1      |
+| 4        | En tant que ... je veux ...          | ...     | 21     | 2      |
+| ...      | ...                                  | ...     | -      | -      |
+
 L'effort et le sprint sont bien sûr édité par l'équipe.
 
 #### 1.2.3.2 Sprint Backlog
@@ -210,55 +213,4 @@ En tant qu'administrateur je veux pouvoir supprimer une recette (backoffice)
 Un gros titre pour un point important
 Si vous travaillez en équipe vous n'êtes pas obligé de suivre les sprints dans le même ordre, ou même de faire les mêmes sprint! A vous de juger
 
-# 2 1er Sprint
-Ouf on va enfin coder! C'est partie pour les joies de l'intégration.
-
-## 2.1 Organisation du sprint
-INFO DU JOUR
-Notre client à oublié de préciser! Il veut un footer en plus, une simple bande noir avec écrit en blanc "Copyright Ocook"! Oubliez pas d'ajouter une carte trello "en tant que client je veux avoir un footer noir avec écrit en blanc copyright Occok sur toutes mes pages" avec le label correspond!
-
-FIN DE L'INFO DU JOUR
-
-Je vous propose un sprint d'une semaine pour ce premier. En effet il ne sera question que d'intégration, il devrait être assez rapide. Cette carte nous servira pour la deadline. Une semaine de travail correspond à 5 jours, je vous propose de compter 5 jours à partir du début de ce sprint pour générer la deadline. Pour afficher une deadline, cliquez sur cette carte, et choisissez "Date limite" dans les options. Si vous travaillez à plusieurs, n'oubliez pas le daily scrum chaque jours.
-
-Nous allons créer une carte "Sprint 1" dans sprint Backlog 4 tâches se démarque : Templating de l'intégration, intégration page d'accueil et intégration page recette, et l'ajout du footer (et oui le sprint n'a pas commencé on peut l'ajouter). On va alors les ajouter à notre sprintBacklog (un simple glissé déposé depuis la partie Productbacklog)
-
-Le templating me semble être la partie la plus simple de ce sprint, il ne s'agit que de découper notre fichier HTML dans des fichiers PHP. Je lui donnerait bien la difficulté de 1. Ensuite, pour l'intégration de la maquette de la page d'accueil, il va falloir créer toutes la navbar et tous le contenu! Je trouve ça bien plus difficile et chronophage, alors j'aurais mis un bon gros 13. Le footer on va le rajouter directement dans cette page, et ça n'est qu'une ligne, pour moi ça vaut également 1 ou au mieux 3. Allez on va dire 1, parce que je suis seul dans mon équipe, et je trouve que 2 balises HTML c'est pas bien dur.
-
-Pour la maquette de la recette c'est déjà plus complexe. Au final le header et le footer, seront les mêmes que sur la page d'accueil, donc je n'aurais que le corps à coder. Alors j'aurais mis un 8 car ça reste tout de même complexe, surtout que ce sera en 3 parties! (préparation, cuisson, et le modal)
-
-## 2.2 Réalisation du sprint
-On oublie pas de déplacer la carte sur la quelle on travail dans "doing".
-
-On va commencer par l'intégration de la page d'accueil.
-
-### Etape 1 Structure de la page
-
-On créait la structure basique avec le head et body.
-On y inclu le CDN de bootstrap
-
-### Etape 2 navbar
-
-Dans la balise adapté dans le body, on créait notre navbar
-
-https://getbootstrap.com/docs/4.3/getting-started/introduction/
-
-https://getbootstrap.com/docs/4.3/components/navbar/
-
-Pour le logo et le bg : 
-
-https://getbootstrap.com/docs/4.0/utilities/colors/
-https://getbootstrap.com/docs/4.0/utilities/borders/
-
-### Etape 3 body
-
-### Etape 4 footer
-
-### Etape 5 page recette
-
-Indices
-A rajouter en cours de prod
-composer require symfony/var-dumper
-composer require altorouter/altorouter
-composer dump-autoload
-
+[sprint 1](/doc/sprint/sprint1.md)
