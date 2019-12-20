@@ -89,6 +89,7 @@ https://getbootstrap.com/docs/4.0/utilities/borders/
 
 </details>
 </details>
+
 ### Etape 3 main
 
 On veut un background avec un gradient. Sur ce body, on notre client veut voir afficher les 6 dernieres recette. On en disposera 3 par ligne sur 2 lignes. En format mobile <576px on ne veut qu'une carte par ligne, et à 768px nous en voulons 2 par ligne. on en veut seulement 2.
@@ -169,6 +170,7 @@ https://www.w3schools.com/css/css_dimension.asp
         </div>
     </main>
 ```
+
 Pour le css :
 
 ``` css
@@ -247,3 +249,9 @@ https://getbootstrap.com/docs/4.0/components/buttons/
 
 </details>
 </details>
+
+### Etape 6 : Templating
+
+Je peux pas vous aider sans vous donnez la réponse!
+Alors goodluck, et au pire vous avez la correction final ;)
+

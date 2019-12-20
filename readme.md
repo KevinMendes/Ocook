@@ -30,7 +30,12 @@ Notre client souhaite réaliser un site internet responsive permettant à ses ut
 
 Page d'accueil : - Visuel : il souhaite que le site ressemble à cette maquette faite par son chien aveugle :
 
-////AJOUTER LE VISUEL////
+![](/doc/screenshoot/Screenshot1.png)
+![](/doc/screenshoot/Screenshot2.png)
+![](/doc/screenshoot/Screenshot3.png)
+![](/doc/screenshoot/Screenshot4.png)
+
+
 - Sur la page d'accueil les 6 dernières recettes qu'il a créé
 - Quand on clique sur la carte d'une recette, on veut arriver sur la page correspondante à la recette
 - Un menu déroulant permettant d'afficher différents-types de viandes (poulet, boeuf, poisson, végétarien), renvoyant sur une page ressemblant à celle de l'accueil mais sans limitation de nombre de recette
