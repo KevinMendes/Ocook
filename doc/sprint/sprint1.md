@@ -30,9 +30,9 @@ On va commencer par l'intégration de la page d'accueil.
 On créait la structure basique avec le head et body.
 
 On y inclu le CDN de bootstrap
-<detail><summary>Débuter avec bootstrap</summary>
+<details><summary>Débuter avec bootstrap</summary>
 https://getbootstrap.com/docs/4.3/getting-started/introduction/
-</detail>
+</details>
 
 ### Etape 2 navbar
 
@@ -41,7 +41,7 @@ Dans la balise adapté dans le body, on créait notre navbar
 On oublie pas, on est des VRAIS dev, on pense alors mobile first! (ctrl + shift +i; puis ctrl + shift + m pour tester votre site en différent format).
 En mobile nous voulons un menu burger, qui devient automatiquement un dropdown menu en format laptop (1024x520).
 
-<detail><summary>Un peu d'aide avec bootstrap?</summary>
+<details><summary>Un peu d'aide avec bootstrap?</summary>
 
 
 
@@ -52,9 +52,9 @@ Pour le logo et le bg :
 https://getbootstrap.com/docs/4.0/utilities/colors/
 https://getbootstrap.com/docs/4.0/utilities/borders/
 
-<detail><summary>Solution</summary
+<details><summary>Solution</summary
 
-<detail><summary>Navbar</summary>
+<details><summary>Navbar</summary>
 <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-success">
             <a class="navbar-brand" href="#"><span class="text-light">O</span><span
@@ -81,10 +81,10 @@ https://getbootstrap.com/docs/4.0/utilities/borders/
             </div>
         </nav>
     </header>
-</detail>
+</details>
 
-</detail>
-</detail>
+</details>
+</details>
 ### Etape 3 main
 
 On veut un background avec un gradient. Sur ce body, on notre client veut voir afficher les 6 dernieres recette. On en disposera 3 par ligne sur 2 lignes. En format mobile <576px on ne veut qu'une carte par ligne, et à 768px nous en voulons 2 par ligne. on en veut seulement 2.
