@@ -55,7 +55,8 @@ https://getbootstrap.com/docs/4.0/utilities/borders/
 <details><summary>Solution</summary
 
 <details><summary>Navbar</summary>
-``` 
+
+``` html
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-success">
             <a class="navbar-brand" href="#"><span class="text-light">O</span><span
@@ -83,6 +84,7 @@ https://getbootstrap.com/docs/4.0/utilities/borders/
         </nav>
     </header>
 ```
+
 </details>
 
 </details>
@@ -104,6 +106,7 @@ Pour la taille des images :
 https://www.w3schools.com/css/css_dimension.asp
 <details><summary>Solution</summary>
 </details>
+
 ``` html
     <main>
         <div class="container mx-auto my-4">
@@ -164,9 +167,11 @@ https://www.w3schools.com/css/css_dimension.asp
                 </div>
             </div>
         </div>
-    </main>```
+    </main>
+```
+Pour le css :
 
-    ``` css
+``` css
 /** GENERAL CSS **/
     html {
         padding: 0;
@@ -176,18 +181,17 @@ https://www.w3schools.com/css/css_dimension.asp
         font-size: 18px;
         background: rgb(115,62,5);
         background: linear-gradient(90deg, rgba(115,62,5,1) 0%, rgba(190,85,9,1) 100%, rgba(230,144,31,1) 100%);
-
     }
 /** CARD CUSTOM CSS **/
     .card{
         width: 18rem;
     }
-
     .card-img-top{
         max-height: 180px;
         width: auto;
     }
-    ```
+```
+
 </details>
 </details>
 
@@ -205,9 +209,10 @@ Allez je suis gentil pour les bouttons en bootstrap.
 https://getbootstrap.com/docs/4.0/components/buttons/
 
 <details><summary>Solution</summary>
-    ``` html
+
+```html
+
         <main>
-        
             <div class="card border-success mx-auto my-4 w-75">
                 <div class="card-header bg-success">Recette : dev en sauce</div>
                 <div class="card-body">
@@ -237,8 +242,8 @@ https://getbootstrap.com/docs/4.0/components/buttons/
                 </div>
             </div>
         </div>
-        
     </main>
-    ```
+ ```
+
 </details>
 </details>
