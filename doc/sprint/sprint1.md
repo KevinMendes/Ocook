@@ -55,7 +55,7 @@ https://getbootstrap.com/docs/4.0/utilities/borders/
 <details><summary>Solution</summary
 
 <details><summary>Navbar</summary>
-``` html
+``` 
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-success">
             <a class="navbar-brand" href="#"><span class="text-light">O</span><span
@@ -82,7 +82,7 @@ https://getbootstrap.com/docs/4.0/utilities/borders/
             </div>
         </nav>
     </header>
-    ```
+```
 </details>
 
 </details>
