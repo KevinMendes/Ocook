@@ -11,6 +11,8 @@ A partir d'ici nous n'allons plus bosser sur la branche master!
 Nous allons créer une branche "pre_prod" qui nous servira à tester notre code "globale". Pour ce faire nous allons taper la commande suivante `git checkout -b pre_prod` 
 Ensuite nous allons créer différentes branche en fonction du bout de code sur lequel nous bosserons! 
 
+Quand vous voulez créer une nouvelle branche et la push sur github une erreure peut apparaitre avec en fin d'erreur la commande `git push --set-upstream origin pre_prod` proposée. Il suffit de faire cette commande pour résoudre le problème.
+
 ## Trello 
 
 Côté Trello , on va organiser une fois de notre travail. Notre API est assez simple.
@@ -185,8 +187,41 @@ On utilisera "display" en CSS pour afficher ou non.
 
 Voilà c'est fait, on peut maintenant supprimer la "recipe.html", elle ne nous servira plus à rien!
 
-Mais vous allez me dire "on a pas fait la fausse route pour afficher toutes les recettes possédants un type d'ingrédient!" Et ne vous inquiétez pas, on n'en aura pas besoin. On utilisera notre API pour ça, en effet on utilisera la template de la main-page, mais ça vous le verez bientôt ;) 
+Maintenant on va gérer l'affichage avec jQuery. On va à la racine de notre dossier, créer un dossier "app" et à l'intérieur un dossier "app.js". 
 
+On n'oublie pas d'inclure ce fichier dans notre index.html.
+
+Dans notre fichier app, nous allons créer un objet qui portera le nom de "app"
+
+<details><summary> Déclaration</summary>
+
+``` js
+let app = {
+
+};
+```
+
+</details>
+
+
+On crééra une fonction flêchée "init" vide pour le moment, qui nous servira de "démarreur", puis en dehors de notre objet nous appeleront la fonction init.
+
+<details><summary>Aide</summary>
+
+```js
+let app = {
+
+    init: () => {
+    }
+};
+
+$(app.init)
+ ```
+
+</details>
+
+
+Mais vous allez me dire "on a pas fait la fausse route pour afficher toutes les recettes possédants un type d'ingrédient!" Et ne vous inquiétez pas, on n'en aura pas besoin. On utilisera notre API pour ça, en effet on utilisera la template de la main-page, mais ça vous le verez bientôt ;) 
 
 
 <details><summary>Aide</summary>
