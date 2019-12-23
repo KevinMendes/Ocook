@@ -233,7 +233,7 @@ On va maintenant devoir se débrouiller pour lancer une fonction permettant de f
 
 On va créer 2 fonctions, une nommée mainPageDisplay et une nommée recipePageDisplay. 
 
-On va devoir intercepter l'évènement permettant d'aller vers une page de recette dans init, bloquer son comportement par défaut (sinon nous iront vers le lien), pour ensuite activer la fonction recipePageDisplay, qui nous permettra de cacher la main page pour afficher la div de la recette voulue.
+On va devoir intercepter l'évènement permettant d'aller vers une page de recette dans init, bloquer son comportement par défaut (sinon nous iront vers le lien), pour ensuite activer la fonction recipePageDisplay, qui nous permettra de cacher la main page pour afficher la div de la recette voulue. On utilisera une classe nommée "recipeAccess" sur les liens afin de pouvoir agir correctement dessus.
 
 <details><summary>Aide</summary>
 
@@ -246,14 +246,14 @@ Pour le passage vers les recettes on va devoir intercepter le clic sur les bouto
 let app = {
 
     init: () => {
-        $('.btn').on('click', app.recipePageDisplay)  
+        $('.recipeAccess').on('click', app.recipePageDisplay)  
     },
 
     recipePageDisplay: () =>{
 
         event.preventDefault();
         //On retire le is-active des 6 recettes
-        $('.main-page').removeClass('is-active').addClass('is-inactive');
+        $('.is-active').removeClass('is-active').addClass('is-inactive');
 
         // On rajoute la classe is-active à la page de recette
 
@@ -275,11 +275,57 @@ Pour pouvoir faire la suite nous allons devoir créer notre modal permettant de 
 ### Sous étape 3 : Création de la modale "bon appétit" 
 
 
+Pour créer cette modal vous aurez besoin de la doc bootstrap : https://getbootstrap.com/docs/4.0/components/modal/
 
 
+Vous pouvez très bien faire l'affichage de la modal à la main en jQuery, et aussi la fermeture de celle-ci mais bootstrap propose déjà de le faire, donc pourquoi ne pas l'exploiter ?
 
+Pour l'identifier nous donneront l'id "bonAppetitModal" à la modal.
+
+<details><summary>Aide</summary>
+N'oubliez pas de modifier le dernier bouton de l'affichage de la recette pour ouvrir votre modal
+<details><summary>réponse</summary>
+
+La modal : 
+
+``` html
+
+        <div class="modal" id="bonAppetitModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Bon appétit!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Retour à la page d'accueil</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+```
+
+La modification du bouton : 
+
+``` html
+
+div class="card-body mx-auto">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#bonAppetitModal">C'est fait</button>
+                    </div>
+
+```
+
+</details>
+</details>
 <!-- Mais vous allez me dire "on a pas fait la fausse route pour afficher toutes les recettes possédants un type d'ingrédient!" Et ne vous inquiétez pas, on n'en aura pas besoin. On utilisera notre API pour ça, en effet on utilisera la template de la main-page, mais ça vous le verez bientôt ;) 
 
+
+### Sous-étape 4 : réafficher la page d'accueil 
+
+Pour ce faire nous donnerons la classe "mainDisplay" au bouton permettant d'afficher la page d'accueil. Pourquoi cette classe? Car si nous devons plus tard (peut être très loin dans le futur) refaire des boutons permettant d'afficher la page d'accueil nous nous y retrouveront mieux. Nous n'oublions pas non plus d'utiliser l'attribut de bootstrap pour fermer la modal
 
 ## Etape 3 : Affichage des 6 recettes -->
 

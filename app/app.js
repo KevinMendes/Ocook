@@ -2,24 +2,30 @@ let app = {
 
     init: () => {
         
-        $('.btn').on('click', app.recipePageDisplay)
+        $('.recipeAccess').on('click', app.recipePageDisplay);
+        $('.mainDisplay').on('click', app.mainPageDisplay);
+
         
     },
 
-    recipePageDisplay: () =>{
+    recipePageDisplay: (event) =>{
 
         event.preventDefault();
-        //On retire le is-active des 6 recettes
-        $('.main-page').removeClass('is-active').addClass('is-inactive');
+        //On retire le is-active des recettes
+        $('.is-active').removeClass('is-active').addClass('is-inactive');
 
         // On rajoute la classe is-active à la page de recette
 
-        $('.recipe-page').removeClass('is-inactive').addClass('is-active')
+        $('.recipe-page').removeClass('is-inactive').addClass('is-active');
 
     },
 
-    mainPageDisplay: (event) =>{
+    mainPageDisplay: () =>{
 
+        //On retire le is-active
+        $('.is-active').removeClass('is-active').addClass('is-inactive');
+        // On rajoute la classe is-active à notre main
+        $('.main-page').removeClass('is-inactive').addClass('is-active');
         
 
     }
