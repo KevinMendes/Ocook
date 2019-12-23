@@ -27,3 +27,14 @@ footer {
     position: fixed;
     bottom: 0;
 }
+
+
+/** Display : none & display : content for SPA **/
+
+.is-active {
+    display: content;
+}
+
+.is-inactive {
+    display: none;
+}
