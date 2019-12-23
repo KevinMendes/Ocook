@@ -29,7 +29,7 @@ L'app permettant d'afficher les 6 recettes sur la page d'accueil tout en créant
 
 Je pense aussi qu'il faut gérer dès maintenant et en priorité l'aspect SPA (single page application), et donc travailler dessus en priorité pour ne pas se compliquer la vie plus tard... Ca me semble tout aussi dure, je lui met un 34! (Vous verrez qu'ici le plus dure est de se dire "comment je vais faire" plus que de l'appliquer! Et la conception fait partie du challenge). On va donc également ajouter la carte "SPA gestion des routes"
  
-Pour ce sprint nous partirons d'une base de 2 semaines de travail au vue de la difficulté (je pense qu'il faut environ 16h max pour réussir cette partie)
+Pour ce sprint nous partirons d'une base de 2 semaines de travail au vue de la difficulté (je pense qu'il faut environ 21h max pour réussir cette partie)
 
 On passe toutes ces cartes dans "sprint backlog" et on crée la carte "sprint 2" comportant la deadline.
 
@@ -37,7 +37,7 @@ On passe toutes ces cartes dans "sprint backlog" et on crée la carte "sprint 2"
 
 ## Avant de commencer 
 
-Dans la doc du projet vous trouverez un jeux de fichier json, ce sont les fichiers qui nous serviront à faire fonctionner nos app Jquery avant que nous aillons construit notre API ;)
+Dans la doc du projet vous trouverez un jeux de fichier json, ce sont les fichiers qui nous serviront à faire fonctionner notre app Jquery avant que nous aillons construit notre API ;). Essayez d'abord de la créer vous-même avant de les utiliser.
 
 # ATTENTION
 
@@ -320,16 +320,67 @@ div class="card-body mx-auto">
 
 </details>
 </details>
-<!-- Mais vous allez me dire "on a pas fait la fausse route pour afficher toutes les recettes possédants un type d'ingrédient!" Et ne vous inquiétez pas, on n'en aura pas besoin. On utilisera notre API pour ça, en effet on utilisera la template de la main-page, mais ça vous le verez bientôt ;) 
+
 
 
 ### Sous-étape 4 : réafficher la page d'accueil 
 
 Pour ce faire nous donnerons la classe "mainDisplay" au bouton permettant d'afficher la page d'accueil. Pourquoi cette classe? Car si nous devons plus tard (peut être très loin dans le futur) refaire des boutons permettant d'afficher la page d'accueil nous nous y retrouveront mieux. Nous n'oublions pas non plus d'utiliser l'attribut de bootstrap pour fermer la modal
 
-## Etape 3 : Affichage des 6 recettes -->
+<details><summary>Aide</summary>
+Le data-dismiss du bouton close devrait vous aider à fermer la modal.
+C'est presque la même chose que pour l'affichage de la recette.
 
+<details><summary>réponse</summary>
 
+Modification du bouton "retour à la page d'accueil"
+
+```html
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary mainDisplay" data-dismiss="modal">Retour à la page d'accueil</button>
+     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+</div>
+
+```
+
+Changement d'affichage :
+
+``` js
+init: () => {
+        $('.recipeAccess').on('click', app.recipePageDisplay);
+        $('.mainDisplay').on('click', app.mainPageDisplay);
+
+    },
+mainPageDisplay: () =>{
+
+        //On retire le is-active
+        $('.is-active').removeClass('is-active').addClass('is-inactive');
+        // On rajoute la classe is-active à notre main
+        $('.main-page').removeClass('is-inactive').addClass('is-active');
+    }
+```
+
+</details>
+</details>
+
+Mais vous allez me dire "on a pas fait la fausse route pour afficher toutes les recettes possédants un type d'ingrédient!" Et ne vous inquiétez pas, on n'en aura pas besoin. On utilisera notre API pour ça, en effet on utilisera la template de la main-page, mais ça vous le verez bientôt ;) 
+
+Notre gestion des routes (en tout cas pour celle-ci) est FINIE :D
+On a également fini la modale, et le retour à la page d'accueil depuis la modale. On peut donc passer ces 3 cartes en done!
+
+## Etape 3 : Affichage des 6 recettes
+
+On passe notre carte "Jquery affichage recette page d'accueil" vers le doing.
+
+On va compliquer techniquement les choses. Dans l'idéal on aimerait récupérer les données de l'API (qu'on a pas encore) pour afficher les bonnes choses. On va donc utiliser pour ça un fichier JSON qui simulera notre API.
+
+On va également templater notre HTML (pas de la même manière qu'en php!), mais entre des balises `<template>`. On aura plus besoin par exemple de 6 div "dernière recette" mais d'une seule.
+
+### Sous étape 1 : templating 
+
+### Sous étape 2 : création des JSON
+
+### Sous étape 3 : AJAX & utilisation des templates
 
 <details><summary>Aide</summary>
 
