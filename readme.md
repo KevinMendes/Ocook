@@ -1,15 +1,15 @@
 # Ocook
 Création d'un site factice regroupant des recettes de cuisine. Ce projet est à but éducatif. Ce cours est à destination des étudiants de l'école Oclock
 
-Objectif : Assimiler git et github, comprendre et utiliser la POO, les API Rest, les requêtes AJAX, JQuery, html & css, bootstrap, SQL via phpmyadmin, structure MVC, méthodologie AGILE, templating et quelques élements de composer. (altorooter principalement)
+Objectif : Assimiler git et github, comprendre et utiliser la POO, les API Rest, les requêtes AJAX, JQuery, html & css, bootstrap, SQL via phpmyadmin, structure MVC, méthodologie AGILE, SPA et quelques élements de composer. (altorooter principalement)
 
-##Avant propos
+## Avant propos
 Prérequis
 Avoir git installé et configuré, un serveur apache et une base de donnée mySql.
 
 Notions de HTML, CSS, PHP, mySql, javascript, et POO.
 
-Et oui c'est pas un cours, mais une application !
+Et oui c'est pas un cours, mais un cas pratique, on ne reviendra pas sur les notions !
 
 ## Difficulté et aide
 Afin de permettre à tous de réussir ce projet sans frustration, chaque étape va être définie en 3 niveaux de difficulté représentés par des spoilers.
@@ -26,6 +26,7 @@ Ce projet est faisable seul. Si vous souhaitez vous perfectionner ou revoir des 
 Puisqu'il s'agit d'un projet de dev, nous allons commencer par ne pas dev! Et oui, chaque chose en son temps, et commençons déjà par nous organiser! Je vous rassure nous allons faire vite!
 
 ## 1.1 Cahier des charges
+
 Notre client souhaite réaliser un site internet responsive permettant à ses utilisateurs de pouvoir consulter ses recettes. Il a déjà pensé à un plan !
 
 Page d'accueil : - Visuel : il souhaite que le site ressemble à cette maquette faite par son chien aveugle :
@@ -48,6 +49,8 @@ Page de recette :
 AdminPanel :
 
 - Le client souhaite pouvoir créer, modifier et supprimer ses recettes depuis un admin panel sécurisé par mot de passe.
+
+/!\ Il ne veut pas qu'on change de page quand on clic sur un lien, il veut que tout se passe sur la même page! /!\
 
 ## 1.2 Methodologie AGILE
 ### 1.2.1 Méthodologie Agile
@@ -193,7 +196,6 @@ Voilà maintenant, on va préparer notre Product Backlog qui servira à tout not
 ### 1.3.2.1 L'intégration
 Première étape on doit penser à l'intégration. On va créer une première carte "Intégration maquette page d'accueil" (template) et une seconde "intégration maquette page de recette" (template). On utilisera celle de l'accueil pour les pages catégories, donc pas besoin de l'intégrer.
 
-Nous devront ensuite templater cette intégration, noous allong donc créer une carte "templating de l'intégration".
 
 ### 1.3.2.2 BDD
 C'est un site composé de recettes, nous allons donc créer une BDD pour les récupérer. Créez une carte "Modélisation et création de la BDD" (backoffice)
@@ -201,7 +203,9 @@ C'est un site composé de recettes, nous allons donc créer une BDD pour les ré
 #### 1.3.2.3 font-end
 
 ##### 1.3.2.3.1 jQuery
-Notre site va utiliser plusieurs petites app jQuery.
+Notre site va utiliser plusieurs petites fonctions jQuery.
+
+Déjà, nous souhaitons avoir une SPA, on va donc créer une carte trello "SPA : Gestion des routes en jQuery"
 
 Une pour gérer l'affichage des recettes sur la page d'accueil. Créez une carte Jquery affichage recette page d'accueil (template) (recipe)
 

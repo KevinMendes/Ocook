@@ -250,8 +250,6 @@ https://getbootstrap.com/docs/4.0/components/buttons/
 </details>
 </details>
 
-### Etape 6 : Templating
+# Le 1er sprint est fini! Bien joué, maintenant un peu de repos :D
 
-Je peux pas vous aider sans vous donnez la réponse!
-Alors goodluck, et au pire vous avez la correction final ;)
-
+[sprint 2](sprint2.md)
