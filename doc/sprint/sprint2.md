@@ -27,9 +27,11 @@ Le "c'est fait me permet de cacher les ingréddents" me semble tout aussi simple
 
 L'app permettant d'afficher les 6 recettes sur la page d'accueil tout en créant un lien vers la recette me semble cette fois beaucoup beaucoup plus dure... Je m'en arrache déjà ma calvitie! Je sais pas comment faire, je vais devoir lire ce fichue manuel... 34!
 
-Je pense aussi qu'il faut gérer dès maintenant et en priorité l'aspect SPA (single page application), et donc travailler dessus en priorité pour ne pas se compliquer la vie plus tard... Ca me semble tout aussi dure, je lui met un 34!
-
+Je pense aussi qu'il faut gérer dès maintenant et en priorité l'aspect SPA (single page application), et donc travailler dessus en priorité pour ne pas se compliquer la vie plus tard... Ca me semble tout aussi dure, je lui met un 34! (Vous verrez qu'ici le plus dure est de se dire "comment je vais faire" plus que de l'appliquer! Et la conception fait partie du challenge). On va donc également ajouter la carte "SPA gestion des routes"
+ 
 Pour ce sprint nous partirons d'une base de 2 semaines de travail au vue de la difficulté (je pense qu'il faut environ 16h max pour réussir cette partie)
+
+On passe toutes ces cartes dans "sprint backlog" et on crée la carte "sprint 2" comportant la deadline.
 
 
 
@@ -55,10 +57,14 @@ Nous allons créer une nouvelle branche depuis la branche pre_prod. Pour voir vo
 
 On va tricher un peu. Notre site aura peu de contenu alors nous n'allons pas créer un routeur à proprement parlé.
 
+
+### Sous étape 1 : Initialiser notre app JS
+
+
 Nous allons intégréer notre `<main>` de recipe.html à l'intérieur de index.html.
 On les affichera à l'aide de 2 classes : is-active et is-inactive, jQuery viendra changer ses classes au besoin. Notre CSS permettra de cacher ou non les `<div>` possédant ses classes!
 
-Je vous conseil également de leur donner la classe "main-page" pour la div regroupant les 6 recettes de la page d'accueil, et "recette-page" pour celle ayant la div contenant le déroulé de la recette.
+Je vous conseil également de leur donner la classe "main-page" pour la div regroupant les 6 recettes de la page d'accueil, et "recipe-page" pour celle ayant la div contenant le déroulé de la recette.
 
 <details><summary>Aide</summary>
 On utilisera "display" en CSS pour afficher ou non.
@@ -68,7 +74,7 @@ On utilisera "display" en CSS pour afficher ou non.
     <main>
 
         <!-- affichage des 6 recettes-->
-        <div class="is-active">
+        <div class="is-active main-page">
             <div class="container mx-auto my-4">
                 <div class="row d-flex justify-content-around">
                     <div class="card col-lg-3 m-2">
@@ -135,7 +141,7 @@ On utilisera "display" en CSS pour afficher ou non.
             </div>
         </div>
         <!-- Affichage de la page recette -->
-        <div class="is-inactive">
+        <div class="is-inactive recipe-page">
             <div class="card border-success mx-auto my-4 w-75">
                 <div class="card-header bg-success">Recette : dev en sauce</div>
                 <div class="card-body">
@@ -221,7 +227,62 @@ $(app.init)
 </details>
 
 
-Mais vous allez me dire "on a pas fait la fausse route pour afficher toutes les recettes possédants un type d'ingrédient!" Et ne vous inquiétez pas, on n'en aura pas besoin. On utilisera notre API pour ça, en effet on utilisera la template de la main-page, mais ça vous le verez bientôt ;) 
+On va maintenant devoir se débrouiller pour lancer une fonction permettant de faire intervertir les deux div HTML. 
+
+### Sous étape 2: changer de div
+
+On va créer 2 fonctions, une nommée mainPageDisplay et une nommée recipePageDisplay. 
+
+On va devoir intercepter l'évènement permettant d'aller vers une page de recette dans init, bloquer son comportement par défaut (sinon nous iront vers le lien), pour ensuite activer la fonction recipePageDisplay, qui nous permettra de cacher la main page pour afficher la div de la recette voulue.
+
+<details><summary>Aide</summary>
+
+$(app.init)
+Pour le passage vers les recettes on va devoir intercepter le clic sur les boutons. On va retirer la class is-active et la remplacer par is-inactive sur la classe main-page et inversement sur la class recipe-page. 
+
+<details><summary>réponse</summary>
+
+``` js
+let app = {
+
+    init: () => {
+        $('.btn').on('click', app.recipePageDisplay)  
+    },
+
+    recipePageDisplay: () =>{
+
+        event.preventDefault();
+        //On retire le is-active des 6 recettes
+        $('.main-page').removeClass('is-active').addClass('is-inactive');
+
+        // On rajoute la classe is-active à la page de recette
+
+        $('.recipe-page').removeClass('is-inactive').addClass('is-active')
+
+    },
+
+    mainPageDisplay: (event) =>{
+
+    }
+};
+```
+
+</details>
+</details>
+
+Pour pouvoir faire la suite nous allons devoir créer notre modal permettant de faire un retour à la recette, ou à la page d'accueil. Nous allons donc créer une modal avec la class "is-inactive" et les 2 boutons prévus (n'oubliez pas de passer les cartes dans Doing).
+
+### Sous étape 3 : Création de la modale "bon appétit" 
+
+
+
+
+
+<!-- Mais vous allez me dire "on a pas fait la fausse route pour afficher toutes les recettes possédants un type d'ingrédient!" Et ne vous inquiétez pas, on n'en aura pas besoin. On utilisera notre API pour ça, en effet on utilisera la template de la main-page, mais ça vous le verez bientôt ;) 
+
+
+## Etape 3 : Affichage des 6 recettes -->
+
 
 
 <details><summary>Aide</summary>
