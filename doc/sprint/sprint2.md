@@ -444,7 +444,7 @@ On aura besoin de l'id de la recette, de son résumé, de son titre, de ses ingr
 
 </details>
 
-### Sous étape 2 : templating 
+### Sous étape 2 : templating & AJAX
 
 Le templating de notre HTML ne va pas être très dure. On va utiliser les balises templates auxquelles on va donner les ID "main-template" et "recipe-template", et on va aussi ajouter l'id 'tpl' à une de nos div (la bonne à vous de la trouver, pas au piff) qui nous servira à afficher nos différents résumés de recette, et une id 'recipe-tpl' à la balise section servant à afficher nos redette (qui ne doit pas être dans la template). Une seule carte de la page d'accueil suffira pour afficher nos 6 dernières recettes (vous commencez à voir comment on va gérer les recettes listées par viande? ;) ). On va devoir regarder du côté de notre fichier JS pour les utiliser. On oublie pas de mettre nos <template> au bon endroit.
 
@@ -457,6 +457,9 @@ On va devoir changer la fonction recipePageDisplay pour aussi cloner sa template
 
 Et on oublie pas le plus important : IL FAUT ATTENDRE QUE LE SERVEUR CHARGE :) 
 
+Ca va être compliqué pour la récupération de la bonne recette, et vous aurez besoin de cette page de doc: 
+https://api.jquery.com/category/selectors/
+
 <details><summary>Aide</summary>
 
 On vire 5 des 6 cartes recette pour n'en garder qu'une qu'on entoure de `<template>` et on balise aussi la div contenant l'affichage de la recette.
@@ -464,6 +467,13 @@ On vire 5 des 6 cartes recette pour n'en garder qu'une qu'on entoure de `<templa
 Avant le return du init, on déclenche notre fonction loadingEvent qui devra contenir les fonctionnalités qu'on avait avant dans le init.
 
 Il faut modifier la page recipePageDisplay pour charger nouvelle fonction loadingEvent pour être certains que nos différentes fonctionnalités soient disponibles. 
+
+On oublie pas d'ajouter un identifiant utilisant l'id de notre recette afin de pouvoir générer la bonne page de recette.
+
+Pour la gestion des recettes c'est plus complexe, il faut récupérer l'ID de la carte sur laquelle on clic pour récupérer la bonne recette. Il faudra créer une fonction loadRecipe qui permet au clic du bouton d'afficher la bonne recette via notre fonction display correspondante. 
+On oublie pas de charger nos fonctions. 
+
+Il faudra utiliser le selecteur spécial `[name="value"]` pour récupérer le bon ID! :)
 <details><summary>réponse</summary>
 
 ``` JS
@@ -505,8 +515,6 @@ let app = {
         $('.is-active').removeClass('is-active').addClass('is-inactive');
         // On rajoute la classe is-active à notre main
         $('.main-page').removeClass('is-inactive').addClass('is-active');
-        
-
     }
 };
 
@@ -671,9 +679,6 @@ $(app.init)
 
 </details>
 </details>
-
-
-### Sous étape 3 : AJAX & utilisation des templates
 
 <details><summary>Aide</summary>
 

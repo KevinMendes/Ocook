@@ -4,10 +4,10 @@
         "name": "Tarte au dev",
         "resume": "Lorem ipsum dolor sit amet consectetur adipisicing iureconsequatur aperiam repudiandae ipsam exercitationem dolorum rem quaerat vitaeofficia?content.",
         "img": "utils/images/img1.jpg",
-        "ingredients": "Etape 1: émincer un dev <br> Etape 2: l'écraser",
+        "ingredient": "tofu",
+        "preparation": "Etape 1: émincer un dev <br> Etape 2: l'écraser",
         "cook": "Etape 1: l'ébouillanter <br> Etape 3 : le cracher"
     },
-
     {
         "id": 2,
         "name": "Pizza d'helper",
@@ -21,7 +21,7 @@
         "id": 3,
         "name": "larme de sang au poulet",
         "resume": "Lorem ipsum dolor sit amet consectetur adipisicing iureconsequatur aperiam repudiandae ipsam exercitationem dolorum rem quaerat vitaeofficia?content.",
-        "img": "utils/images/img1.jpg",
+        "img": "utils/images/img2.jpg",
         "ingredient": "tofu",
         "preparation": "Etape 1: émincer un étudiant <br> Etape 2: l'écraser",
         "cook": "Etape 1: l'ébouillanter <br> Etape 3 : le cracher"
@@ -39,7 +39,7 @@
         "id": 5,
         "name": "PHP en pleure",
         "resume": "Lorem ipsum dolor sit amet consectetur adipisicing iureconsequatur aperiam repudiandae ipsam exercitationem dolorum rem quaerat vitaeofficia?content.",
-        "img": "utils/images/img1.jpg",
+        "img": "utils/images/img2.jpg",
         "ingredient": "dev",
         "preparation": "Etape 1: émincer un dev symfony <br> Etape 2: l'écraser",
         "cook": "Etape 1: l'ébouillanter <br> Etape 3 : le cracher"
