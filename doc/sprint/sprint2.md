@@ -378,6 +378,226 @@ On va également templater notre HTML (pas de la même manière qu'en php!), mai
 
 ### Sous étape 1 : templating 
 
+Le templating de notre HTML ne va pas être très dure. On va utiliser les balises templates auxquelles on va donner les ID "main-template" et "recipe-template", et on va aussi créer une div avec l'id 'tpl' qui nous servira à afficher nos différents template. Une seule carte de la page d'accueil suffira pour afficher nos 6 dernières recettes (vous commencez à voir comment on va gérer les recettes listées par viande? ;) ). On va devoir regarder du côté de notre fichier JS pour les utiliser. 
+
+Nos 6 dernières recettes doivent être affichée dès le chargement de la page. On va donc devoir charger nos cards de la page d'accueil directement dans le init, et on affichera tout ça grâce à un return. Qui dit return dit impossibilité de coder après ce return, on va donc créer une fonction "loadingEvent" qui nous servira en quelque sorte de controller pour la gestion de nos évènements CLICK. 
+
+A l'aide de $.contents $.clones et $.appendTo on affichera la template souhaitée. 
+
+
+On va devoir changer la fonction recipePageDisplay pour aussi cloner sa template.
+
+Et on oublie pas le plus important : IL FAUT ATTENDRE QUE LE SERVEUR CHARGE :) 
+
+<details><summary>Aide</summary>
+
+On vire 5 des 6 cartes recette pour n'en garder qu'une qu'on entoure de `<template>` et on balise aussi la div contenant l'affichage de la recette.
+
+Avant le return du init, on déclenche notre fonction loadingEvent qui devra contenir les fonctionnalités qu'on avait avant dans le init.
+
+Il faut modifier la page recipePageDisplay pour charger nouvelle fonction loadingEvent pour être certains que nos différentes fonctionnalités soient disponibles. 
+<details><summary>réponse</summary>
+
+``` JS
+let app = {
+
+    init: () => {
+
+        let mainElement = $('#main-template').contents().clone().appendTo('#tpl');
+        $(app.loadingEvent);
+        return mainElement;
+    },
+
+    loadingEvent: () => {
+        $('.recipeAccess').on('click', app.recipePageDisplay);
+        $('.mainDisplay').on('click', app.mainPageDisplay);
+
+    },
+
+
+    recipePageDisplay: (event) =>{
+
+        event.preventDefault();
+
+        let pageElement = $('#recipe-template').contents().clone().appendTo('#tpl');
+        //On retire le is-active des recettes
+        $('.is-active').removeClass('is-active').addClass('is-inactive');
+
+        // On rajoute la classe is-active à la page de recette
+
+        $('.recipe-page').removeClass('is-inactive').addClass('is-active');
+
+        return pageElement;
+
+    },
+
+    mainPageDisplay: () =>{
+
+        //On retire le is-active
+        $('.is-active').removeClass('is-active').addClass('is-inactive');
+        // On rajoute la classe is-active à notre main
+        $('.main-page').removeClass('is-inactive').addClass('is-active');
+        
+
+    }
+};
+
+$(app.init)
+```
+
+``` html
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Ocook</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+            <a class="navbar-brand" href="index.html"><span class="text-light">O</span><span
+                    class="text-success bg-light border border-left-0 border rounded-circle">cook</span></a>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Viandes
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Boeuf</a>
+                            <a class="dropdown-item" href="#">Poulet</a>
+                            <a class="dropdown-item" href="#">Tofu</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div id="tpl"></div>
+        <!-- affichage des 6 recettes-->
+        <template id="main-template">
+            <section>
+                <div class="is-active main-page">
+                    <div class="container mx-auto my-4">
+                        <div class="row d-flex justify-content-around">
+                            <div class="card col-lg-3 m-2">
+                                <img class="card-img-top center mt-1" src="utils/images/img1.jpg" alt="Churos">
+                                <div class="card-body">
+                                    <h5 class="card-title">Tarte à la claque</h5>
+                                    
+                                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                                        iure
+                                        consequatur aperiam repudiandae ipsam exercitationem dolorum rem quaerat vitae
+                                        officia?
+                                        content.</p>
+                                    <a href="#" class="btn btn-primary recipeAccess">Voir la recette</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </template>
+        <!-- Affichage de la page recette -->
+        <template id="recipe-template">
+            <section>
+                <div class="is-inactive recipe-page">
+                    <div class="card border-success mx-auto my-4 w-75">
+                        <div class="card-header bg-success">Recette : dev en sauce</div>
+                        <div class="card-body">
+
+                            <h5 class="card-title">Préparation des ingrédients</h5>
+                        </div>
+                        <ul class="list-group list-group-flush"></ul>
+                        <li class="list-group-item">
+                            <p class="card-text">Etape 1 : Emincer un helper</p>
+                        </li>
+                        <li class="list-group-item">
+                            <p class="card-text">Etape 2 : Couper en cube un dev</p>
+                        </li>
+                        <div class="card-body mx-auto">
+                            <button type="button" class="btn btn-success">C'est fait</button>
+                        </div>
+
+
+                        <div class="card-body">
+                            <h5 class="card-title">Cuisson</h5>
+                        </div>
+                        <ul class="list-group list-group-flush"></ul>
+                        <li class="list-group-item">Etape 1 : Mettre la préparation dans une vessie de jument</li>
+                        <li class="list-group-item">Etape 2 : Mettre à 1240° dans un volcan pendant 3 secondes</li>
+                        <div class="card-body mx-auto">
+                            <button type="button" class="btn btn-success" data-toggle="modal"
+                                data-target="#bonAppetitModal">C'est fait</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </template>
+        <!-- MODAL BON APPETIT-->
+
+        <div class="modal" id="bonAppetitModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Bon appétit!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary mainDisplay" data-dismiss="modal">Retour à la
+                            page d'accueil</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-dark mb-0">
+        <p class="text-light text-center mb-0 pt-2 pb-1">© 2076 Gandalf le Cuisto</p>
+    </footer>
+    <!-- END OF FOOTER-->
+    <!-- Bootstrap CDN-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <!-- jQuery CDN-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- homemade script-->
+    <script src="app/app.js"></script>
+</body>
+
+</html>
+```
+
+</details>
+</details>
+
 ### Sous étape 2 : création des JSON
 
 ### Sous étape 3 : AJAX & utilisation des templates
