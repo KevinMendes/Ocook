@@ -40,67 +40,22 @@
     </header>
 
     <main>
-        <div id="tpl"></div>
-        <!-- affichage des 6 recettes-->
-        <template id="main-template">
-            <section>
+        <!-- affichage des résumés de recette-->
+        <section>
+            <div>
                 <div class="is-active main-page">
                     <div class="container mx-auto my-4">
-                        <div class="row d-flex justify-content-around">
-                            <div class="card col-lg-3 m-2">
-                                <img class="card-img-top center mt-1" src="utils/images/img1.jpg" alt="Churos">
-                                <div class="card-body">
-                                    <h5 class="card-title">Tarte à la claque</h5>
-                                    
-                                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
-                                        iure
-                                        consequatur aperiam repudiandae ipsam exercitationem dolorum rem quaerat vitae
-                                        officia?
-                                        content.</p>
-                                    <a href="#" class="btn btn-primary recipeAccess">Voir la recette</a>
-                                </div>
-                            </div>
+                        <div class="row d-flex justify-content-around" id="tpl">
+
                         </div>
                     </div>
+
                 </div>
-            </section>
-        </template>
-        <!-- Affichage de la page recette -->
-        <template id="recipe-template">
-            <section>
-                <div class="is-inactive recipe-page">
-                    <div class="card border-success mx-auto my-4 w-75">
-                        <div class="card-header bg-success">Recette : dev en sauce</div>
-                        <div class="card-body">
+        </section>
+        <!-- affichage de la recette -->
+        <section id="recipe-tpl">
 
-                            <h5 class="card-title">Préparation des ingrédients</h5>
-                        </div>
-                        <ul class="list-group list-group-flush"></ul>
-                        <li class="list-group-item">
-                            <p class="card-text">Etape 1 : Emincer un helper</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p class="card-text">Etape 2 : Couper en cube un dev</p>
-                        </li>
-                        <div class="card-body mx-auto">
-                            <button type="button" class="btn btn-success">C'est fait</button>
-                        </div>
-
-
-                        <div class="card-body">
-                            <h5 class="card-title">Cuisson</h5>
-                        </div>
-                        <ul class="list-group list-group-flush"></ul>
-                        <li class="list-group-item">Etape 1 : Mettre la préparation dans une vessie de jument</li>
-                        <li class="list-group-item">Etape 2 : Mettre à 1240° dans un volcan pendant 3 secondes</li>
-                        <div class="card-body mx-auto">
-                            <button type="button" class="btn btn-success" data-toggle="modal"
-                                data-target="#bonAppetitModal">C'est fait</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </template>
+        </section>
         <!-- MODAL BON APPETIT-->
 
         <div class="modal" id="bonAppetitModal" tabindex="-1" role="dialog">
@@ -143,5 +98,55 @@
     <!-- homemade script-->
     <script src="app/app.js"></script>
 </body>
+
+<!-- affichage des 6 recettes-->
+<template id="main-template">
+    <div class="card col-lg-3 m-2">
+        <img class="card-img-top center mt-1" src="utils/images/img1.jpg" alt="Churos">
+        <div class="card-body">
+            <h5 class="card-title">Tarte à la claque</h5>
+
+            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                iure
+                consequatur aperiam repudiandae ipsam exercitationem dolorum rem quaerat vitae
+                officia?
+                content.</p>
+            <a href="#" class="btn btn-primary recipeAccess" id="recipe-">Voir la recette</a>
+        </div>
+    </div>
+</template>
+<!-- Affichage de la page recette -->
+<template id="recipe-template">
+        <div class="is-inactive recipe-page">
+            <div class="card border-success mx-auto my-4 w-75">
+                <div class="card-header bg-success">Recette : dev en sauce</div>
+                <div class="card-body">
+
+                    <h5 class="card-title">Préparation des ingrédients</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <p class="card-text">Etape 1 : Emincer un helper</p>
+                </li>
+                </ul>
+                <div class="card-body mx-auto">
+                    <button type="button" class="btn btn-success">C'est fait</button>
+                </div>
+
+
+                <div class="card-body">
+                    <h5 class="card-title">Cuisson</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item">Etape 1 : Mettre la préparation dans une vessie de jument</li>
+                <li class="list-group-item">Etape 2 : Mettre à 1240° dans un volcan pendant 3 secondes</li>
+                </ul>
+                <div class="card-body mx-auto">
+                    <button type="button" class="btn btn-success" data-toggle="modal"
+                        data-target="#bonAppetitModal">C'est fait</button>
+                </div>
+            </div>
+        </div>
+</template>
 
 </html>

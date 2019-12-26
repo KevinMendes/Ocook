@@ -37,7 +37,7 @@ On passe toutes ces cartes dans "sprint backlog" et on crée la carte "sprint 2"
 
 ## Avant de commencer 
 
-Dans la doc du projet vous trouverez un jeux de fichier json, ce sont les fichiers qui nous serviront à faire fonctionner notre app Jquery avant que nous aillons construit notre API ;). Essayez d'abord de la créer vous-même avant de les utiliser.
+Dans la doc du projet vous trouverez un fichier json, ce sont les fichiers qui nous serviront à faire fonctionner notre app Jquery avant que nous aillons construit notre API ;). Essayez d'abord de la créer vous-même avant de les utiliser.
 
 # ATTENTION
 
@@ -376,9 +376,77 @@ On va compliquer techniquement les choses. Dans l'idéal on aimerait récupérer
 
 On va également templater notre HTML (pas de la même manière qu'en php!), mais entre des balises `<template>`. On aura plus besoin par exemple de 6 div "dernière recette" mais d'une seule.
 
-### Sous étape 1 : templating 
+### Sous étape 1 : Création du fichier JSON
 
-Le templating de notre HTML ne va pas être très dure. On va utiliser les balises templates auxquelles on va donner les ID "main-template" et "recipe-template", et on va aussi créer une div avec l'id 'tpl' qui nous servira à afficher nos différents template. Une seule carte de la page d'accueil suffira pour afficher nos 6 dernières recettes (vous commencez à voir comment on va gérer les recettes listées par viande? ;) ). On va devoir regarder du côté de notre fichier JS pour les utiliser. 
+
+On aura besoin de l'id de la recette, de son résumé, de son titre, de ses ingrédients (viande),de sa cuisson et de ses étapes de préparation.
+
+<details><summary>réponse</summary>
+
+```json
+[
+    {
+        "id": 1,
+        "name": "Tarte au dev",
+        "resume": "Lorem ipsum dolor sit amet consectetur adipisicing iureconsequatur aperiam repudiandae ipsam exercitationem dolorum rem quaerat vitaeofficia?content.",
+        "img": "utils/images/img1.jpg",
+        "ingredients": "Etape 1: émincer un dev <br> Etape 2: l'écraser",
+        "cook": "Etape 1: l'ébouillanter <br> Etape 3 : le cracher"
+    },
+
+    {
+        "id": 2,
+        "name": "Pizza d'helper",
+        "resume": "Lorem ipsum dolor sit amet consectetur adipisicing iureconsequatur aperiam repudiandae ipsam exercitationem dolorum rem quaerat vitaeofficia?content.",
+        "img": "utils/images/img1.jpg",
+        "ingredient": "poulet",
+        "preparation": "Etape 1: émincer un helper <br> Etape 2: l'écraser",
+        "cook": "Etape 1: l'ébouillanter <br> Etape 3 : le cracher"
+    },
+    {
+        "id": 3,
+        "name": "larme de sang au poulet",
+        "resume": "Lorem ipsum dolor sit amet consectetur adipisicing iureconsequatur aperiam repudiandae ipsam exercitationem dolorum rem quaerat vitaeofficia?content.",
+        "img": "utils/images/img1.jpg",
+        "ingredient": "tofu",
+        "preparation": "Etape 1: émincer un étudiant <br> Etape 2: l'écraser",
+        "cook": "Etape 1: l'ébouillanter <br> Etape 3 : le cracher"
+    },
+    {
+        "id": 4,
+        "name": "AJAX en papillotte",
+        "resume": "Lorem ipsum dolor sit amet consectetur adipisicing iureconsequatur aperiam repudiandae ipsam exercitationem dolorum rem quaerat vitaeofficia?content.",
+        "img": "utils/images/img1.jpg",
+        "ingredient": "poulet",
+        "preparation": "Etape 1: émincer une fonction <br> Etape 2: l'écraser",
+        "cook": "Etape 1: l'ébouillanter <br> Etape 3 : le cracher"
+    },
+    {
+        "id": 5,
+        "name": "PHP en pleure",
+        "resume": "Lorem ipsum dolor sit amet consectetur adipisicing iureconsequatur aperiam repudiandae ipsam exercitationem dolorum rem quaerat vitaeofficia?content.",
+        "img": "utils/images/img1.jpg",
+        "ingredient": "dev",
+        "preparation": "Etape 1: émincer un dev symfony <br> Etape 2: l'écraser",
+        "cook": "Etape 1: l'ébouillanter <br> Etape 3 : le cracher"
+    },
+    {
+        "id": 6,
+        "name": "BDD desossée et caramélisée",
+        "resume": "Lorem ipsum dolor sit amet consectetur adipisicing iureconsequatur aperiam repudiandae ipsam exercitationem dolorum rem quaerat vitaeofficia?content.",
+        "img": "utils/images/img1.jpg",
+        "ingredient": "boeuf",
+        "preparation": "Etape 1: émincer une BDD <br> Etape 2: l'écraser",
+        "cook": "Etape 1: l'ébouillanter <br> Etape 3 : le cracher"
+    }
+]
+```
+
+</details>
+
+### Sous étape 2 : templating 
+
+Le templating de notre HTML ne va pas être très dure. On va utiliser les balises templates auxquelles on va donner les ID "main-template" et "recipe-template", et on va aussi ajouter l'id 'tpl' à une de nos div (la bonne à vous de la trouver, pas au piff) qui nous servira à afficher nos différents résumés de recette, et une id 'recipe-tpl' à la balise section servant à afficher nos redette (qui ne doit pas être dans la template). Une seule carte de la page d'accueil suffira pour afficher nos 6 dernières recettes (vous commencez à voir comment on va gérer les recettes listées par viande? ;) ). On va devoir regarder du côté de notre fichier JS pour les utiliser. On oublie pas de mettre nos <template> au bon endroit.
 
 Nos 6 dernières recettes doivent être affichée dès le chargement de la page. On va donc devoir charger nos cards de la page d'accueil directement dans le init, et on affichera tout ça grâce à un return. Qui dit return dit impossibilité de coder après ce return, on va donc créer une fonction "loadingEvent" qui nous servira en quelque sorte de controller pour la gestion de nos évènements CLICK. 
 
@@ -488,67 +556,22 @@ $(app.init)
     </header>
 
     <main>
-        <div id="tpl"></div>
-        <!-- affichage des 6 recettes-->
-        <template id="main-template">
-            <section>
+        <!-- affichage des résumés de recette-->
+        <section>
+            <div>
                 <div class="is-active main-page">
                     <div class="container mx-auto my-4">
-                        <div class="row d-flex justify-content-around">
-                            <div class="card col-lg-3 m-2">
-                                <img class="card-img-top center mt-1" src="utils/images/img1.jpg" alt="Churos">
-                                <div class="card-body">
-                                    <h5 class="card-title">Tarte à la claque</h5>
-                                    
-                                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
-                                        iure
-                                        consequatur aperiam repudiandae ipsam exercitationem dolorum rem quaerat vitae
-                                        officia?
-                                        content.</p>
-                                    <a href="#" class="btn btn-primary recipeAccess">Voir la recette</a>
-                                </div>
-                            </div>
+                        <div class="row d-flex justify-content-around" id="tpl">
+
                         </div>
                     </div>
+
                 </div>
-            </section>
-        </template>
-        <!-- Affichage de la page recette -->
-        <template id="recipe-template">
-            <section>
-                <div class="is-inactive recipe-page">
-                    <div class="card border-success mx-auto my-4 w-75">
-                        <div class="card-header bg-success">Recette : dev en sauce</div>
-                        <div class="card-body">
+        </section>
+        <!-- affichage de la recette -->
+        <section id="recipe-tpl">
 
-                            <h5 class="card-title">Préparation des ingrédients</h5>
-                        </div>
-                        <ul class="list-group list-group-flush"></ul>
-                        <li class="list-group-item">
-                            <p class="card-text">Etape 1 : Emincer un helper</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p class="card-text">Etape 2 : Couper en cube un dev</p>
-                        </li>
-                        <div class="card-body mx-auto">
-                            <button type="button" class="btn btn-success">C'est fait</button>
-                        </div>
-
-
-                        <div class="card-body">
-                            <h5 class="card-title">Cuisson</h5>
-                        </div>
-                        <ul class="list-group list-group-flush"></ul>
-                        <li class="list-group-item">Etape 1 : Mettre la préparation dans une vessie de jument</li>
-                        <li class="list-group-item">Etape 2 : Mettre à 1240° dans un volcan pendant 3 secondes</li>
-                        <div class="card-body mx-auto">
-                            <button type="button" class="btn btn-success" data-toggle="modal"
-                                data-target="#bonAppetitModal">C'est fait</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </template>
+        </section>
         <!-- MODAL BON APPETIT-->
 
         <div class="modal" id="bonAppetitModal" tabindex="-1" role="dialog">
@@ -592,13 +615,63 @@ $(app.init)
     <script src="app/app.js"></script>
 </body>
 
+<!-- affichage des 6 recettes-->
+<template id="main-template">
+    <div class="card col-lg-3 m-2">
+        <img class="card-img-top center mt-1" src="utils/images/img1.jpg" alt="Churos">
+        <div class="card-body">
+            <h5 class="card-title">Tarte à la claque</h5>
+
+            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                iure
+                consequatur aperiam repudiandae ipsam exercitationem dolorum rem quaerat vitae
+                officia?
+                content.</p>
+            <a href="#" class="btn btn-primary recipeAccess" id="recipe-">Voir la recette</a>
+        </div>
+    </div>
+</template>
+<!-- Affichage de la page recette -->
+<template id="recipe-template">
+        <div class="is-inactive recipe-page">
+            <div class="card border-success mx-auto my-4 w-75">
+                <div class="card-header bg-success">Recette : dev en sauce</div>
+                <div class="card-body">
+
+                    <h5 class="card-title">Préparation des ingrédients</h5>
+                </div>
+                <ul class="list-group list-group-flush"></ul>
+                <li class="list-group-item">
+                    <p class="card-text">Etape 1 : Emincer un helper</p>
+                </li>
+                <li class="list-group-item">
+                    <p class="card-text">Etape 2 : Couper en cube un dev</p>
+                </li>
+                <div class="card-body mx-auto">
+                    <button type="button" class="btn btn-success">C'est fait</button>
+                </div>
+
+
+                <div class="card-body">
+                    <h5 class="card-title">Cuisson</h5>
+                </div>
+                <ul class="list-group list-group-flush"></ul>
+                <li class="list-group-item">Etape 1 : Mettre la préparation dans une vessie de jument</li>
+                <li class="list-group-item">Etape 2 : Mettre à 1240° dans un volcan pendant 3 secondes</li>
+                <div class="card-body mx-auto">
+                    <button type="button" class="btn btn-success" data-toggle="modal"
+                        data-target="#bonAppetitModal">C'est fait</button>
+                </div>
+            </div>
+        </div>
+</template>
+
 </html>
 ```
 
 </details>
 </details>
 
-### Sous étape 2 : création des JSON
 
 ### Sous étape 3 : AJAX & utilisation des templates
 

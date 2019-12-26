@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "name": "Tarte au dev",
+        "resume": "Lorem ipsum dolor sit amet consectetur adipisicing iureconsequatur aperiam repudiandae ipsam exercitationem dolorum rem quaerat vitaeofficia?content.",
+        "img": "utils/images/img1.jpg",
+        "ingredients": "Etape 1: émincer un dev <br> Etape 2: l'écraser",
+        "cook": "Etape 1: l'ébouillanter <br> Etape 3 : le cracher"
+    },
+
+    {
+        "id": 2,
+        "name": "Pizza d'helper",
+        "resume": "Lorem ipsum dolor sit amet consectetur adipisicing iureconsequatur aperiam repudiandae ipsam exercitationem dolorum rem quaerat vitaeofficia?content.",
+        "img": "utils/images/img1.jpg",
+        "ingredient": "poulet",
+        "preparation": "Etape 1: émincer un helper <br> Etape 2: l'écraser",
+        "cook": "Etape 1: l'ébouillanter <br> Etape 3 : le cracher"
+    },
+    {
+        "id": 3,
+        "name": "larme de sang au poulet",
+        "resume": "Lorem ipsum dolor sit amet consectetur adipisicing iureconsequatur aperiam repudiandae ipsam exercitationem dolorum rem quaerat vitaeofficia?content.",
+        "img": "utils/images/img1.jpg",
+        "ingredient": "tofu",
+        "preparation": "Etape 1: émincer un étudiant <br> Etape 2: l'écraser",
+        "cook": "Etape 1: l'ébouillanter <br> Etape 3 : le cracher"
+    },
+    {
+        "id": 4,
+        "name": "AJAX en papillotte",
+        "resume": "Lorem ipsum dolor sit amet consectetur adipisicing iureconsequatur aperiam repudiandae ipsam exercitationem dolorum rem quaerat vitaeofficia?content.",
+        "img": "utils/images/img1.jpg",
+        "ingredient": "poulet",
+        "preparation": "Etape 1: émincer une fonction <br> Etape 2: l'écraser",
+        "cook": "Etape 1: l'ébouillanter <br> Etape 3 : le cracher"
+    },
+    {
+        "id": 5,
+        "name": "PHP en pleure",
+        "resume": "Lorem ipsum dolor sit amet consectetur adipisicing iureconsequatur aperiam repudiandae ipsam exercitationem dolorum rem quaerat vitaeofficia?content.",
+        "img": "utils/images/img1.jpg",
+        "ingredient": "dev",
+        "preparation": "Etape 1: émincer un dev symfony <br> Etape 2: l'écraser",
+        "cook": "Etape 1: l'ébouillanter <br> Etape 3 : le cracher"
+    },
+    {
+        "id": 6,
+        "name": "BDD desossée et caramélisée",
+        "resume": "Lorem ipsum dolor sit amet consectetur adipisicing iureconsequatur aperiam repudiandae ipsam exercitationem dolorum rem quaerat vitaeofficia?content.",
+        "img": "utils/images/img1.jpg",
+        "ingredient": "boeuf",
+        "preparation": "Etape 1: émincer une BDD <br> Etape 2: l'écraser",
+        "cook": "Etape 1: l'ébouillanter <br> Etape 3 : le cracher"
+    }
+]
