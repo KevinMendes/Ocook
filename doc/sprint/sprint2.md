@@ -837,4 +837,12 @@ loadingEvent: () => {
 
 Notre app front est presque finie, je vois dans le trello qu'il ne reste qu'à gérer l'affichage des recettes par ingrédients! On verra ça après notre API, le front commence à me donner mal à la tête! :) 
 
+Il nous reste plus qu'à merge notre branch sur la branch pre_prod.
+
+On va déjà commencer par commit et push notre travail sur la branch router.
+
+Ensuite, on va se deplacer avec git checkout sur la branch pre_prod
+Et sur cette branch on va fusionner le travail fait sur le router. On va taper git merge pre_prod
+Il restera qu'à push cette branche :)
+
 [sprint 3](sprint3.md)
