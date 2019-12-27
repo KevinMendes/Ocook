@@ -46,7 +46,7 @@ let app = {
 
         console.log(eventId);
 
-        $.ajax($.ajax('doc/json_files/list.json').done((list) => {
+        $.ajax('doc/json_files/list.json').done((list) => {
             $.each(list, (index, list) => {
 
 
@@ -63,7 +63,6 @@ let app = {
 
         })
 
-        )
     },
 
 
