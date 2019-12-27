@@ -1,0 +1,40 @@
+
+/** GENERAL CSS **/
+html {
+    padding: 0;
+    margin: 0;
+}
+body {
+    font-size: 18px;
+    background: rgb(115,62,5);
+background: linear-gradient(90deg, rgba(115,62,5,1) 0%, rgba(190,85,9,1) 100%, rgba(230,144,31,1) 100%);
+
+}
+/** CARD CUSTOM CSS **/
+.card{
+    width: 18rem;
+}
+
+.card-img-top{
+   max-height: 180px;
+   width: auto;
+}
+
+/** FIXING FOOTER **/
+
+footer {
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+}
+
+
+/** Display : none & display : content for SPA **/
+
+.is-active {
+    display: content;
+}
+
+.is-inactive {
+    display: none;
+}

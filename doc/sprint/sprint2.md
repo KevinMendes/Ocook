@@ -368,7 +368,7 @@ Mais vous allez me dire "on a pas fait la fausse route pour afficher toutes les 
 Notre gestion des routes (en tout cas pour celle-ci) est FINIE :D
 On a également fini la modale, et le retour à la page d'accueil depuis la modale. On peut donc passer ces 3 cartes en done!
 
-## Etape 3 : Affichage des 6 recettes
+## Etape 3 : Affichage des 6 recettes & selection de la recette
 
 On passe notre carte "Jquery affichage recette page d'accueil" vers le doing.
 
@@ -450,7 +450,7 @@ Le templating de notre HTML ne va pas être très dure. On va utiliser les balis
 
 Nos 6 dernières recettes doivent être affichée dès le chargement de la page. On va donc devoir charger nos cards de la page d'accueil directement dans le init, et on affichera tout ça grâce à un return. Qui dit return dit impossibilité de coder après ce return, on va donc créer une fonction "loadingEvent" qui nous servira en quelque sorte de controller pour la gestion de nos évènements CLICK. 
 
-A l'aide de $.contents $.clones et $.appendTo on affichera la template souhaitée. 
+A l'aide de $.contents $.clones et $.append on affichera la template souhaitée. 
 
 
 On va devoir changer la fonction recipePageDisplay pour aussi cloner sa template.
@@ -458,7 +458,9 @@ On va devoir changer la fonction recipePageDisplay pour aussi cloner sa template
 Et on oublie pas le plus important : IL FAUT ATTENDRE QUE LE SERVEUR CHARGE :) 
 
 Ca va être compliqué pour la récupération de la bonne recette, et vous aurez besoin de cette page de doc: 
-https://api.jquery.com/category/selectors/
+
+https://api.jquery.com/on/#on-events-selector-data-handler
+https://api.jquery.com/attr/
 
 <details><summary>Aide</summary>
 
@@ -466,14 +468,24 @@ On vire 5 des 6 cartes recette pour n'en garder qu'une qu'on entoure de `<templa
 
 Avant le return du init, on déclenche notre fonction loadingEvent qui devra contenir les fonctionnalités qu'on avait avant dans le init.
 
-Il faut modifier la page recipePageDisplay pour charger nouvelle fonction loadingEvent pour être certains que nos différentes fonctionnalités soient disponibles. 
+Il faut modifier la page recipePageDisplay pour charger nouvelle fonction loadingEvent pour être certains que nos différentes fonctionnalités soient disponibles.
 
 On oublie pas d'ajouter un identifiant utilisant l'id de notre recette afin de pouvoir générer la bonne page de recette.
 
-Pour la gestion des recettes c'est plus complexe, il faut récupérer l'ID de la carte sur laquelle on clic pour récupérer la bonne recette. Il faudra créer une fonction loadRecipe qui permet au clic du bouton d'afficher la bonne recette via notre fonction display correspondante. 
-On oublie pas de charger nos fonctions. 
+Pour la gestion des recettes c'est plus complexe, il faut récupérer l'ID de la carte sur laquelle on clic pour récupérer la bonne recette. Il faudra créer une fonction loadRecipe qui permet au clic du bouton d'afficher la bonne recette via notre fonction display correspondante.
+Comme dit plus haut il faudra récupérer l'id, pour se faire on va utiliser un code semblable à ça : 
 
-Il faudra utiliser le selecteur spécial `[name="value"]` pour récupérer le bon ID! :)
+``` js
+$('.maClassAFocus').on('click', function () {
+            var maVariable = $(this).attr("id");
+            $(app.maFOnction(maVariable))
+        });
+```
+
+Cette manip permettra de joindre l'attribut id correspondant, il n'y aura plus qu'à le comparer via un IF dans notre loadRecipe. Si c'est OK afficher la carte.
+
+Pour récupérer le bon ID, il faudra au moment du clic sur le bouton (qui est un lien) "Voir la recette" récupérer l'ID qui lui est attacher grâce à $.attr et le transmettre un loadRecipe().
+
 <details><summary>réponse</summary>
 
 ``` JS
@@ -481,23 +493,75 @@ let app = {
 
     init: () => {
 
-        let mainElement = $('#main-template').contents().clone().appendTo('#tpl');
-        $(app.loadingEvent);
-        return mainElement;
+        $.ajax('doc/json_files/list.json').done((list) => {
+            $.each(list, (index, list) => {
+                let mainElement = app.generateListElement(list.name, list.resume, list.img, list.id);
+                $('#tpl').append(mainElement);
+            })
+
+            $(app.loadingEvent);
+        });
+
+
+
     },
 
     loadingEvent: () => {
-        $('.recipeAccess').on('click', app.recipePageDisplay);
+
+        // je récupère l'ID correspondant à l'endroit où je clic et je transmet cette ID à loadrecipe
+        $('.recipeAccess').on('click', function () {
+            var eventId = $(this).attr("id");
+            $(app.loadRecipe(eventId))
+        });
+
         $('.mainDisplay').on('click', app.mainPageDisplay);
+    },
+
+    generateListElement: (name, resume, img, id) => {
+
+        let mainElement = $('#main-template').contents().clone()
+
+        mainElement.find('.card-title').text(name);
+        mainElement.find('.card-img-top').attr("src", img);
+        mainElement.find('.card-text').text(resume);
+        mainElement.find('.recipeAccess').attr('id', 'recipe-' + id);
+
+        return mainElement;
+
 
     },
 
+    loadRecipe: (eventId) => {
 
-    recipePageDisplay: (event) =>{
+        console.log(eventId);
 
-        event.preventDefault();
+        $.ajax($.ajax('doc/json_files/list.json').done((list) => {
+            $.each(list, (index, list) => {
 
-        let pageElement = $('#recipe-template').contents().clone().appendTo('#tpl');
+
+                let recipeElement = app.recipePageDisplay(list.name, list.cook, list.id, list.preparation);
+
+
+              // Je vérifie que mon tour sur la boucle correspond à l'id voulu, quand c'est le cas j'affiche la recette
+                if (eventId === `recipe-${list.id}`) {
+
+
+                    return $('#recipe-tpl').append(recipeElement);
+                }
+            })
+
+        })
+
+        )
+    },
+
+
+    recipePageDisplay: (name, cook, id, preparation) => {
+
+
+
+
+        let recipeElement = $('#recipe-template').contents().clone()
         //On retire le is-active des recettes
         $('.is-active').removeClass('is-active').addClass('is-inactive');
 
@@ -505,20 +569,29 @@ let app = {
 
         $('.recipe-page').removeClass('is-inactive').addClass('is-active');
 
-        return pageElement;
+        recipeElement.find(".card-header").text("Recette : " + name);
+        recipeElement.find(".cook").html(cook);
+        recipeElement.find(".prepare").html(preparation);
+
+        return recipeElement;
+
+
+
 
     },
 
-    mainPageDisplay: () =>{
+    mainPageDisplay: () => {
 
         //On retire le is-active
         $('.is-active').removeClass('is-active').addClass('is-inactive');
         // On rajoute la classe is-active à notre main
         $('.main-page').removeClass('is-inactive').addClass('is-active');
+
+
     }
 };
 
-$(app.init)
+$(document).ready(app.init);
 ```
 
 ``` html
@@ -677,11 +750,91 @@ $(app.init)
 </html>
 ```
 
+## Etape 4 : Cacher les ingrédient
+
+Ouf, cette fois on va faire plus simple! 
+
+Au clic sur le bouton, on ajoute la class is-inactive à la bonne div. c'est tout ! :) On ajoutera la classe "ingredients" au bouton pour se faire.
+
+On peut même aller plus loin et changer le bouton par un autre permettant de remontrer les ingrédients, mais dans ce cas il faudra créer une nouvelle fonction et l'appeler via le loadingEvent. On appelera la fonction à appeler ingredientsHide().
+
+/!\ ON ATTEND QUE LE SERVEUR CHARGE :) 
+
 </details>
 </details>
 
 <details><summary>Aide</summary>
 
+Alors on c'est fait avoir par le côté asynchrone ?
+
+Il faut appeler notre fonction permettant de cacher le bouton dans loadingEvent. Quand on affiche la page de la recette "loadingEvent" a chargé ces 2 fonctions :
+``` js
+ $('.recipeAccess').on('click', function () {
+            var eventId = $(this).attr("id");
+            $(app.loadRecipe(eventId))
+        });
+
+        $('.mainDisplay').on('click', app.mainPageDisplay);
+```
+
+mais ingredientsHide qui cherche le bouton avec la classe "ingredients" lui est bien chargé, mais sans savoir ou se trouve cette classe! Et oui sur la page d'accueil "ingredients" n'est qu'à l'état de template, JS ne va donc pas le chercher! Il faut alors dans à la fin de l'affichage de la page de la recette rappeler la fonction loadEvent. 
+
+Et ça sera pareil au moment ou vous cachez le bouton! Si vous le réaffichez, JS ne connait pas le nouveau "ingredients" que vous allez réafficher! (Bon pour palier à ça pour pourriez passer par les basic effect $.hide() et $.show() mais je voulais aller au plus simple)
+
+
 <details><summary>réponse</summary>
+
+```JS
+loadingEvent: () => {
+
+        // je récupère l'ID correspondant à l'endroit où je clic et je transmet cette ID à loadrecipe
+        $('.recipeAccess').on('click', function () {
+            var eventId = $(this).attr("id");
+            $(app.loadRecipe(eventId))
+        });
+
+        $('.mainDisplay').on('click', app.mainPageDisplay);
+
+        $('.ingredients').on('click', app.ingredientsHide);
+    },
+    recipePageDisplay: (name, cook, id, preparation) => {
+
+
+
+
+        let recipeElement = $('#recipe-template').contents().clone()
+        //On retire le is-active des recettes
+        $('.is-active').removeClass('is-active').addClass('is-inactive');
+
+        // On rajoute la classe is-active à la page de recette
+
+        $('.recipe-page').removeClass('is-inactive').addClass('is-active');
+
+        recipeElement.find(".card-header").text("Recette : " + name);
+        recipeElement.find(".cook").html(cook);
+        recipeElement.find(".prepare").html(preparation);
+        $(app.loadingEvent);
+
+        return recipeElement;
+    },
+
+    ingredientsHide: () =>{
+        
+            $('.prepare').addClass('is-inactive');
+            $('.ingredients').removeClass('ingredients').addClass('show').text("revoir");
+            $('.show').on('click', function () {
+                $('.prepare').removeClass('is-inactive');
+                $('.show').removeClass('show').addClass('ingredients').text("C'est fait");
+                $(app.loadingEvent);
+            })
+    },
+```
+
 </details>
 </details>
+
+# BRAVO ! 
+
+Notre app front est presque finie, je vois dans le trello qu'il ne reste qu'à gérer l'affichage des recettes par ingrédients! On verra ça après notre API, le front commence à me donner mal à la tête! :) 
+
+[sprint 3](sprint3.md)
