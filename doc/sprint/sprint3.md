@@ -84,6 +84,11 @@ Dans doc/database
 
 ### Sous-étape 3 : Création de la BDD
 
+On oublie pas de créer une user et un password (ocook et ocook) dédié à cette table qu'on appellera Ocook.
+
+Enfin dans la table user, nous allons créer une entrée, l'utilisateur ocook avec le mot de passe ocook hashé en sha1, et en rank admin (Nous utiliserons peu ce rang, mais il sert si vous souhaitez pousser un peu plus le projet).
+
+
 ### 
 
 </details>
@@ -91,6 +96,14 @@ Dans doc/database
 
 <details><summary>Aide</summary>
 
+Pour la requête SQL : 
+
+``` sql
+INSERT INTO `users` (`id`, `pseudo`, `password`, `rank`) VALUES (NULL, 'ocook', SHA1('ocook'), 'admin');
+```
+
 <details><summary>réponse</summary>
+
+doc/database
 </details>
 </details>

@@ -4,15 +4,15 @@
 |-|-|-|-|
 |id|INT|PRIMARY KEY, NOT NULL, UNSIGNED, AUTO_INCREMENT|L'identifiant de notre recette|
 | name | VARCHAR(255) | NOT NULL |Le titre de la recette|
-| resume | INT | NOT NULL, UNSIGNED |Le résumé de la carte|
+| resume | TEXT | NOT NULL|Le résumé de la carte|
 |created_at|TIMESTAMP|NOT NULL, DEFAULT CURRENT_TIMESTAMP|La date de création de la recette|
 |updated_at|TIMESTAMP|NULL|La date de la dernière mise à jour de la recette|
-|cook|entity|NOT NULL|Etape de préparation de la recette|
-|preparation|NOT NULL|NULL|Les étapes de préparations des ingrédients de la recette|
-|img|entity|NOT NULL|Lien vers l'image|
-|ingredients|NOT NULL|NULL|L'ingrédient carné ou tofu attaché à la recette|
+|cook|TEXT|NOT NULL|Etape de préparation de la recette|
+|preparation|TEXT|NOT NULL|Les étapes de préparations des ingrédients de la recette|
+|img|varchar(255)|NOT NULL|Lien vers l'image|
+|ingredients|VARCHAR(40)|NOT NULL|L'ingrédient carné ou tofu attaché à la recette|
 
-## Utilisateurs (`user`)
+## Utilisateurs (`users`)
 
 |Champ|Type|Spécificités|Description|
 |-|-|-|-|
