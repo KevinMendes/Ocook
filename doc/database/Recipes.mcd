@@ -1,0 +1,2 @@
+RECIPE: id, name, resume, img, ingredient, preparation, cook, create_at, update_at
+USERS : id, pseudo, password, rank
