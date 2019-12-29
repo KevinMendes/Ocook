@@ -107,3 +107,33 @@ INSERT INTO `users` (`id`, `pseudo`, `password`, `rank`) VALUES (NULL, 'ocook', 
 doc/database
 </details>
 </details>
+
+## Etape 2 : Création de l'API
+
+Ca va être dure, courage! 
+
+### Sous-étape 1 : Connecter la l'API à la BDD
+
+### Sous-étape 2 : Préparation des dépendances 
+
+### Sous-étape 3 : Réalisation de la DOC relative aux routes
+
+### Sous-étape 4 : Création des routes
+
+### Sous-étape 5 : Création des modèles et controllers
+
+JSON + SESSION + COOKIE ?
+
+### Sous-étape 6 : Création du form de login + adaptation de l'app JS
+
+### Sous-étape 7 : Création de la page admin + adaptation de l'app JS
+
+## Etape 3 : Remplacer le list.json par notre API
+
+### Sous-étape 1: Ajout de routes dans la doc
+
+### Sous-étape 2: Création des routes sur l'API
+
+### Sous-étape 3: Création des models et controllers nécessaire
+
+### Sous-étape 4: Modification de l'app JS
