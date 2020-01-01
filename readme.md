@@ -7,12 +7,13 @@ Objectif : Assimiler git et github, comprendre et utiliser la POO, les API Rest,
 Prérequis
 Avoir git installé et configuré, un serveur apache et une base de donnée mySql.
 
-Notions de HTML, CSS, PHP, mySql, javascript, et POO.
+Connaissance de HTML, CSS, PHP, mySql, javascript, et POO.
 
 Et oui c'est pas un cours, mais un cas pratique, on ne reviendra pas sur les notions !
 
 ## Difficulté et aide
-Afin de permettre à tous de réussir ce projet sans frustration, chaque étape va être définie en 3 niveaux de difficulté représentés par des spoilers.
+
+Afin de permettre à tous de réussir ce projet sans frustration, chaque étape va être définie en 3 (énoncé + 2 spoilers) niveaux de difficulté.
 
 Les étapes seront données en mode guidé, avec des informations basiques, comme par exemple le nom des variables à utiliser. Vous serez libre de faire à votre manière et si ça marche youpi. Si vous n'y arrivait pas vous aurez la possibilité de déplier les menus d'indices corresponds à l'étape. Dans ces derniers vous trouverez des liens renvoyant à la documentation (pour la partie dev). Dans ces mêmes indices, si vous n'y arrivez toujours pas, vous pourrez une fois encore déplier pour cette fois-ci obtenir la réponse de cette étape.
 
@@ -20,9 +21,11 @@ Sémantique
 Comme je viens de le préciser, vous aurez les réponses fournies. Afin de ne pas être bloqué plus loin par un soucis de code différent rendant cette correction innutile je vous conseil soit, de remplacer votre code par celui-ci, en le relisant bien-sûr pour le comprendre, ce qui ne devrait pas être bien difficile si vous aviez déjà réussi de votre côté. La seconde solution, (mais qui peut tout de même potentiellement amener des problèmes sur la durée), sera de bien respecter les noms qui vous seront proposés pour les différentes variables et autres, et de bien respecter le contenu attendu dedans.
 
 ## Organisation
+
 Ce projet est faisable seul. Si vous souhaitez vous perfectionner ou revoir des notions, il sera tout à fait adapté. Toutefois, l'organisation de ce projet sera également adapté à une petite équipe de développeurs (max 4) vous permettant de vous confronter au travail collaboratif.
 
 # 1/ Commençons par le commencement
+
 Puisqu'il s'agit d'un projet de dev, nous allons commencer par ne pas dev! Et oui, chaque chose en son temps, et commençons déjà par nous organiser! Je vous rassure nous allons faire vite!
 
 ## 1.1 Cahier des charges
@@ -48,12 +51,14 @@ Page de recette :
 - Quand je clique sur le bouton "c'est fait" de la partie cuisson je veux qu'une modal s'ouvre avec pour message "Bon apétit!", un bouton permettant de revoir la recette si on a cliqué par erreur, et un bouton permettant d'aller à la page d'accueil.
 AdminPanel :
 
-- Le client souhaite pouvoir créer, modifier et supprimer ses recettes depuis un admin panel sécurisé par mot de passe.
+- Le client souhaite pouvoir créer et supprimer ses recettes depuis un admin panel sécurisé par mot de passe.
 
 /!\ Il ne veut pas qu'on change de page quand on clic sur un lien, il veut que tout se passe sur la même page! /!\
 
 ## 1.2 Methodologie AGILE
+
 ### 1.2.1 Méthodologie Agile
+
 (Ce qui va venir n'est qu'un copier coller raccourci du manifeste que vous trouverez en fin de ce point)
 La méthodologie Agile est basée sur le manifeste Agile. Ce manifeste fait ressortir 4 points fondamentaux à ce moyen d'organisation.
 
@@ -218,7 +223,6 @@ On reprend notre user story et on accélère.
 
 En tant qu'administrateur je veux accéder à un panel sécurisé par mot de passe (backoffice)
 En tant qu'administrateur je veux pouvoir ajouter une recette à mon site (backoffice)
-En tant qu'administrateur je veux pouvoir modifier une recette (backoffice)
 En tant qu'administrateur je veux pouvoir supprimer une recette (backoffice)
 Un gros titre pour un point important
 Si vous travaillez en équipe vous n'êtes pas obligé de suivre les sprints dans le même ordre, ou même de faire les mêmes sprint! A vous de juger

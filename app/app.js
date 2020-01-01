@@ -26,6 +26,8 @@ let app = {
         $('.mainDisplay').on('click', app.mainPageDisplay);
 
         $('.ingredients').on('click', app.ingredientsHide);
+
+        $('.connect').on('click', app.connect);
     },
 
     generateListElement: (name, resume, img, id) => {
@@ -86,15 +88,15 @@ let app = {
         return recipeElement;
     },
 
-    ingredientsHide: () =>{
-        
-            $('.prepare').addClass('is-inactive');
-            $('.ingredients').removeClass('ingredients').addClass('show').text("revoir");
-            $('.show').on('click', function () {
-                $('.prepare').removeClass('is-inactive');
-                $('.show').removeClass('show').addClass('ingredients').text("C'est fait");
-                $(app.loadingEvent);
-            })
+    ingredientsHide: () => {
+
+        $('.prepare').addClass('is-inactive');
+        $('.ingredients').removeClass('ingredients').addClass('show').text("revoir");
+        $('.show').on('click', function () {
+            $('.prepare').removeClass('is-inactive');
+            $('.show').removeClass('show').addClass('ingredients').text("C'est fait");
+            $(app.loadingEvent);
+        })
     },
 
     mainPageDisplay: () => {
@@ -106,7 +108,51 @@ let app = {
         $(app.loadingEvent);
 
 
+    },
+
+    connect: (event) => {
+        // on bloque l'effet par défault du bouton
+        event.preventDefault();
+        //on récupère les valeurs des champs inputs
+        let name = $('#name').val();
+        let password = $('#password').val();
+
+
+        console.log(name + " " + password);
+        if (name == "" || password == "") {
+            alert("Tous les champs doivent être remplis");
+        } else {
+            $.ajax({
+                type: "get",
+                url: `http://localhost/projet/Ocook/API/public/user/admin?name=${name}&password=${password}`,
+            }).done((results) => {
+                $.each(results, (index, result) => {
+
+                    if (result.rank == "admin") {
+                        $('.is-active').removeClass('is-active').addClass('is-inactive');
+                        $('.connection-close').trigger('click')
+                        let adminPanel = $('#admin-template').contents().clone()
+                       $('#admin-tpl').append(adminPanel);
+                        $(app.loadingEvent);
+                        
+                        
+                    } else {
+                        alert("vous n'êtes pas autorisé");
+                    }
+                   
+                })
+                
+
+            }).fail(() => {
+                $('#nameHelp').html("<p> Erreur, vérifiez vos identifiants");;
+            });
+            
+            return false;
+        }
     }
+
+
+
 };
 
 $(document).ready(app.init);

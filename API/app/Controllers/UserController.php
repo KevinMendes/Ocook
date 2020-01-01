@@ -9,7 +9,6 @@ class UserController extends MainController
 {
     public function admin($param)
     {
-       
         if (isset($_GET['name']) &&
         isset($_GET['password'])
         ) {

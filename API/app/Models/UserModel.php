@@ -37,8 +37,10 @@ class UserModel extends MainModel
         $pdoStatement->execute();
 
         $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, self::class);
-
-        return $results;
-
+        if ($results === []){
+            return $results = "error2";
+        }else{
+            return $results;
+        }
     }
 }

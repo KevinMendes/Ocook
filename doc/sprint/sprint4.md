@@ -1,5 +1,7 @@
 ## Etape 3 : Remplacer le list.json par notre API
+Quand on clic sur supprimer la liste de nos recettes avec un bouton delete.
 
+Quand on clic sur le bouton ajouter un form permettant d'ajouter un titre, une image, un menu déroulant permettant de choisir son ingrédient, une textarea pour la partie préparation, et une textarea pour ajouter la cook.
 </details>
 </details>
 

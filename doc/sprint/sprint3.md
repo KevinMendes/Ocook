@@ -186,7 +186,6 @@ Complétez ce model
 |--|--|--|--|
 | `/recipe` | `GET` | - | récupération de toutes les données |
 | `/recipe/add` | `POST` | - | Ajout d'une recette |
-| `/recipe/[id]/update` | `POST` | id, name, resume, update_at, cook, preparation, ingredients, img | Update d'une recette |
 | `/recipe/[id]/delete` | `POST` | id, name | Supprime une recette |
 | `/recipe/main` | `GET` | name, resume, create_at, img, id | Récupération des 6 dernières recettes pour la homepage  |
 | `/recipe/ingredients` | `GET` | name, resume, create_at, img, ingredients, id |  Récupération des recettes contenants l'ingrédients choisis, trié par date|
@@ -548,6 +547,8 @@ Dû au JsonSerialize, nous devont créer une méthod permettant à notre BaseCon
 On oublie pas de se lier à la BDD avec un use.
 Il faudra alors aussi créer la method findAdmin (dû à l'abstract), faire notre requête, et faire un return du tableau.
 
+Avec des conditions on gère si jamais le mdp ou le pseudo sont faux.
+
 /!\ On oublie pas les namespaces /!\
 
 
@@ -630,7 +631,12 @@ class UserModel extends MainModel
         $pdo = Database::getPDO();
 
         $pdoStatement = $pdo->prepare($sql);
-
+if ($results === []){
+            return $results = "error";
+        }else{
+            echo "Success";
+            return $results;
+        }
         $pdoStatement->bindParam(":name", $name, PDO::PARAM_STR);
         $pdoStatement->bindParam(":password", $password, PDO::PARAM_STR);
 
@@ -638,7 +644,12 @@ class UserModel extends MainModel
 
         $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, self::class);
 
-        return $results;
+        if ($results === []){
+            return $results = "error";
+        }else{
+            echo "Success";
+            return $results;
+        }
 
     }
 }
@@ -649,7 +660,7 @@ class UserModel extends MainModel
 </details>
 </details>
 
-### Sous-étape 6 : Création du form de login + adaptation de l'app JS
+### Sous-étape 6 : Création du form de login
 
 A partir d'ici on va arrêter de bosser sur la branche backoffice, puisqu'on passe sur le front. 
 
@@ -658,30 +669,182 @@ Si tout fonctionne on va alors merge ce travail sur notre branche de pre_prod. g
 On va rebasculer sur notre branche routeur, qui elle ne dispose pas du travail du backoffice, on va donc également merge. git checkout routeur puis git merge pre_prod
 
 
+On va commencer par créer sur notre document HTML un bouton de connexion, et le form sera dans une modale. Ce bouton aura une bordure blanche, l'intérieur de la couleur de la navbar et aura une class "admin-panel", ce bouton devra ouvrir la modal. Ce bouton doit être dans le dropdown menu sur les petits ecrans. La modal devra avoir la class admin-access. Pour finir le bouton du form aura la class "connect". Et on ajoute sur la modal un bouton permettant de fermer la modale avec la class "connection-close".
 
+On rajoute aussi une section avec l'id "admin-tpl"
+Doc : 
 
-<details><summary>Aide</summary>
-
+https://getbootstrap.com/docs/4.3/components/forms/
+https://getbootstrap.com/docs/4.0/components/buttons/
 
 <details><summary>réponse</summary>
 
+Navbar: 
 
+```html
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+            <a class="navbar-brand" href="index.html"><span class="text-light">O</span><span
+                    class="text-success bg-light border border-left-0 border rounded-circle">cook</span></a>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Viandes
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Boeuf</a>
+                            <a class="dropdown-item" href="#">Poulet</a>
+                            <a class="dropdown-item" href="#">Tofu</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-success border-white admin-panel" data-toggle="modal"
+                            data-target="#admin-access">Administrateur</button>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+```
+
+Modal 
+
+```html
+  <div class="modal" id="admin-access" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center">Connexion</h5>
+                    </div>
+                    <form class="p-2">
+                        <div class="form-group">
+                            <label for="name">Pseudo</label>
+                            <input type="name" class="form-control" id="name" aria-describedby="emailHelp"
+                                placeholder="Pseudo">
+                            <small id="nameHelp" class="form-text text-muted">User : ocook</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Password">
+                            <small id="passwordHelp" class="form-text text-muted">Password : ocook</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary connect" value="submit">Envoyer</button>
+                        <button type="button connection-close" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+```
+
+section :
+
+```html
+        <section id="admin-tpl">
+        </section>
+```
 </details>
-</details>
+
 ### Sous-étape 7 : Création de la page admin + adaptation de l'app JS
 
-</details>
+
+Notre page va commencer à devenir énorme, désolé! Mais on va éviter de rentrer dans des techniques bizarre d'incluse de HTML, et on va aussi éviter les requires PHP pour bien séparer les concepts, mais sachez que vous pouvez alléger l'index.html. On va continuer de le faire grossir en en créant 3 nouveau template.
+
+On va faire un truc très très simple : 
+
+2 boutons : Un bouton supprimer et un bouton ajouter une recette. Cette template s'appelera "admin-template"
+
+On va uniquement gérer le jQuery permettant d'afficher ça quand le MDP est bon histoire de voir que ça fonctionne. 
+
+On utilisera une fonction appelée "connect"
+Si les champs ne sont pas renseignés on envoie une alert.
+Sinon on fait une requête ajax. On récupère le nom et le rank comme prévu dans le model.
+Si l'user est un admin on affiche la page avec les 2 boutons (page dégueulasse!).
+dans cette fonction on bloquera le comportement pas défault du bouton submit, et on récupère les informations saisie.
+On a utilisé la méthode GET dans le controlleur, on peut donc passer les pramètres directement dans l'URL.
+Il faudra également déclencher un faux clic sur le bouton permettant de fermer la modal.
+doc : 
+
+https://api.jquery.com/event.preventdefault/
+https://api.jquery.com/val/
+https://api.jquery.com/trigger/
+
+<details><summary>Réponse HTML</summary>
+
+```html
+<template id="admin-template">
+    <div>
+        <button type="button" class="btn btn-danger">Supprimer</button>
+        <button type="button" class="btn btn-primary">Ajouter</button>
+    </div>
+</template>
+```
+
 </details>
 
 <details><summary>Aide</summary>
 
+Il faut d'abord empêche le bouton d'effectuer le submit avec un preventDefault
 
+Ensuite récupérer les valeurs de name et password
+
+Ensuite créer une condition pour vérifier que les champs ne sont pas vide si ils sont vide envoyer une alerte, sinon faire notre requête ajax vers API/user/admin?name="LE PSEUDO"&password="LE PASSWORD"
+si c'est OK fermer la modale, enlever la template active et passer à la template de la page admin (on oublie pas de reharcger loadingEvent).
+Si ça fail, afficher un message d'erreur.
 <details><summary>réponse</summary>
 
+``` js
+   connect: (event) => {
+        // on bloque l'effet par défault du bouton
+        event.preventDefault();
+        //on récupère les valeurs des champs inputs
+        let name = $('#name').val();
+        let password = $('#password').val();
+
+        if (name == "" || password == "") {
+            alert("Tous les champs doivent être remplis");
+        } else {
+            $.ajax({
+                type: "get",
+                url: `http://localhost/projet/Ocook/API/public/user/admin?name=${name}&password=${password}`,
+            }).done((results) => {
+                $.each(results, (index, result) => {
+
+                    if (result.rank == "admin") {
+                        $('.is-active').removeClass('is-active').addClass('is-inactive');
+                        $('.connection-close').trigger('click')
+                        let adminPanel = $('#admin-template').contents().clone()
+                       $('#admin-tpl').append(adminPanel);
+                        $(app.loadingEvent);
+
+                    } else {
+                        alert("vous n'êtes pas autorisé");
+                    }
+                   
+                })
+                
+
+            }).fail(() => {
+                $('#nameHelp').html("<p> Erreur, vérifiez vos identifiants");;
+            });
+            
+            return false;
+        }
+    }
+```
 
 </details>
 </details>
 
 # BRAVO
+
+On peut aller fièrement sur trello et boucler ce sprint!
 
 Ce sprint qui fait pleurer du sang est terminé! On part en route vers le dernier sprint! 

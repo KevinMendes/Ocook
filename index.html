@@ -34,8 +34,13 @@
                             <a class="dropdown-item" href="#">Tofu</a>
                         </div>
                     </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-success border-white admin-panel" data-toggle="modal"
+                            data-target="#admin-access">Administrateur</button>
+                    </li>
                 </ul>
             </div>
+
         </nav>
     </header>
 
@@ -56,8 +61,38 @@
         <section id="recipe-tpl">
 
         </section>
-        <!-- MODAL BON APPETIT-->
+        <!-- affichage de la page admin-->
+        <section id="admin-tpl">
 
+        </section>
+<!-- MODAL CONNEXION-->
+        <div class="modal" id="admin-access" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center">Connexion</h5>
+                    </div>
+                    <form class="p-2">
+                        <div class="form-group">
+                            <label for="name">Pseudo</label>
+                            <input type="name" class="form-control" id="name" aria-describedby="emailHelp"
+                                placeholder="Pseudo">
+                            <small id="nameHelp" class="form-text text-muted">User : ocook</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Password">
+                            <small id="passwordHelp" class="form-text text-muted">Password : ocook</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary connect" value="submit">Envoyer</button>
+                        <button type="button connection-close" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+                <!-- MODAL BON APPETIT-->
         <div class="modal" id="bonAppetitModal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -117,36 +152,43 @@
 </template>
 <!-- Affichage de la page recette -->
 <template id="recipe-template">
-        <div class="is-inactive recipe-page">
-            <div class="card border-success mx-auto my-4 w-75">
-                <div class="card-header bg-success">Recette : dev en sauce</div>
-                <div class="card-body">
+    <div class="is-inactive recipe-page">
+        <div class="card border-success mx-auto my-4 w-75">
+            <div class="card-header bg-success">Recette : dev en sauce</div>
+            <div class="card-body">
 
-                    <h5 class="card-title">Préparation des ingrédients</h5>
-                </div>
-                <ul class="list-group list-group-flush">
+                <h5 class="card-title">Préparation des ingrédients</h5>
+            </div>
+            <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                     <p class="card-text prepare">Etape 1 : Emincer un helper</p>
                 </li>
-                </ul>
-                <div class="card-body mx-auto">
-                    <button type="button" class="btn btn-success ingredients">C'est fait</button>
-                </div>
+            </ul>
+            <div class="card-body mx-auto">
+                <button type="button" class="btn btn-success ingredients">C'est fait</button>
+            </div>
 
 
-                <div class="card-body">
-                    <h5 class="card-title">Cuisson</h5>
-                </div>
-                <ul class="list-group list-group-flush">
+            <div class="card-body">
+                <h5 class="card-title">Cuisson</h5>
+            </div>
+            <ul class="list-group list-group-flush">
                 <li class="list-group-item cook">Etape 1 : Mettre la préparation dans une vessie de jument</li>
-                
-                </ul>
-                <div class="card-body mx-auto">
-                    <button type="button" class="btn btn-success" data-toggle="modal"
-                        data-target="#bonAppetitModal">C'est fait</button>
-                </div>
+
+            </ul>
+            <div class="card-body mx-auto">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#bonAppetitModal">C'est
+                    fait</button>
             </div>
         </div>
+    </div>
+</template>
+<!-- affichage de la page admin-->
+<template id="admin-template">
+    <div>
+        <button type="button" class="btn btn-danger">Supprimer</button>
+        <button type="button" class="btn btn-primary">Ajouter</button>
+    </div>
 </template>
 
 </html>
