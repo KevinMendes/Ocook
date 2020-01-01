@@ -46,7 +46,7 @@ CREATE TABLE `recipe` (
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
-  `pseudo` varchar(30) NOT NULL,
+  `name` varchar(30) NOT NULL,
   `password` varchar(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `rank` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
