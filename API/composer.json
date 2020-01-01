@@ -3,7 +3,7 @@
     "description": "Un super site de recette",
     "autoload": {
         "psr-4": {
-            "ocook\\": "API/"
+            "ocook\\": "app/"
         }
     },
     "require": {

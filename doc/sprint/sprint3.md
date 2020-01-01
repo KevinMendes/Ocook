@@ -138,7 +138,7 @@ Créez le fichier composer.json suivant dans API :
     "description": "Un super site de recette",
     "autoload": {
         "psr-4": {
-            "ocook\\": "API/"
+            "ocook\\": "app/"
         }
     },
     "require": {
@@ -373,7 +373,7 @@ class App
             "GET",
             "/user/admin",
             [
-                "controllerName" => CardController::class,
+                "controllerName" => UserController::class,
                 "methodName" => "admin"
             ],
             "admin"
@@ -407,8 +407,229 @@ class App
 
 ### Sous-étape 5 : Création des modèles et controllers
 
+Nous allons créer 2 nouveaux dossier dans app : Controllers et Models.
+
 JSON + SESSION + COOKIE ? $.get(mapagephp, function(data){ var bidule = ma var})
 
+#### 1 : Les controllers
+
+##### HS Technique :
+Pour ceux qui ont du mal avec l'utilité du MVC, une tentative d'explication : 
+
+La vue va gérer l'affichage de la page (donc chez nous notre vue est notre app front! :))
+Le modèle permet d'effectuer les différentes requêtes nécessitant une manipulation des données. 
+Le controlleur c'est un gros bordel qui gère un peu tout le reste (on aurait très bien pu y mettre nos routes, mais je trouve ça moins lisible), c'est la partie qui va controller (captain obvious) les saisie de l'utilisateur et qui va les réorientés au bon endroit (modèle, vue, etc...). C'est un peu notre chef de gare qui évite que tout ne dérail! 
+
+
+Nous avons fait toutes les routes de tout notre projet pour être tranquille une fois pour toute. Mais là nous allons nous concentrer uniquement sur notre doing : Accéder à un panel sécurisé par mot de passe.
+
+Nous allons créer notre MainController qui va nous servir à envoyer nos données sous forme de json à notre app front. On va avoir besoin du json_encode et du header.
+
+https://www.php.net/manual/fr/function.json-encode.php
+https://www.php.net/manual/fr/function.header.php
+<details><summary>Réponse</summary>
+
+``` PHP
+<?php
+
+namespace ocook\Controllers;
+
+class MainController
+{
+    // Cette fonction nous permet d'envoyer la reponse de la requete utilisateur sous forme d'un echaine de caractere encodée en JSON
+    public function sendJson($data)
+    {
+        // en entrée on recoit dans la variable $data les données à encoder et envoyer au client
+        // on transforme $data en JSON
+        $jsonString = json_encode($data);
+        // j'envoi un header pour dire au client que je vais lui repondre en JSON
+        header('content-type:application/json');
+        // on va envoyer la reponse au format JSON
+        echo $jsonString;
+    }
+}
+```
+
+</details>
+
+Une fois que c'est fait nous allons passer à notre UserController. Notre UserController hérite du MainController.
+On oublie pas le namespace. Nous devront aussi utiliser un modèle pour nos requêtes, ce model sera UserModel, on peut déjà ajouter son use. Dans nos route, nous avons précisé une méthode à utiliser, notre fonction devra donc porter ce nom.
+
+Notre controller devra utiliser le UserModel, on oublie pas de faire un use.
+Nous utiliseront le model "findAdmin" que nous créerons plus tard dans le UserModel.
+On doit vérifier dans notre controller que name et password ont bien été renseigné.
+Le controlleur devra récupérer les infos saisie en $_POST
+On passe en paramètre name et password à la fonction findAdmin. On oublie pas que nous voulons récupérer un json.
+
+On va créer un MainModel et un UserModel.
+Le main model permettra de faire hérité les autres models du USE PDO, mais permettra aussi de nous obliger à fournir certains élément. On va commencer par créer notre classe en abstract avec un implements JsonSerializable, permettra de nous forcer à faire un json_encode() (que nous avons déjà fait dans notre MainController), si ça n'est pas fait, une fatal erreure sera retournée. Ensuite un abstract de la fonction findAdmin, afin de nous forcer à créer findAdmin, sinon fatal error aussi.
+Enfin nous puisque ce Model servira de donnateur à nos models qui en hériterons, nous créerons une petite variable nous permettant de récupérer la table sur la quelle nous travaillons, afin de pouvoir hériter correctement des fonctions communes si il y en a. (Spoiler, il n'y en aura pas, alors si vous voyez pas comment faire c'est que du bonus)
+
+Le modèle UserModel s'occupera de faire la requête SQL et de renvoyer un tableau.
+Dû au JsonSerialize, nous devont créer une méthod permettant à notre BaseControler de faire le json_encode(), que nous appelerons JsonSerialize().
+On oublie pas de se lier à la BDD avec un use.
+Il faudra alors aussi créer la method findAdmin (dû à l'abstract), faire notre requête, et faire un return du tableau.
+
+/!\ On oublie pas les namespaces /!\
+<details><summary>Aide</summary>
+
+Sur la route allez voir du côté de "methodName =>" pour utiliser les bons nom de methodes.
+
+Les isset permette de vérifier que les champs sont biens passés.
+Pour le MainModel, on fait un use de JsonSerializable, un use de ocook\Utils\Database
+On fait aussi un use PDO, afin de le transmettre à tous les héritiers.
+Enfin on déclare la classe en abstract class et avec un implements de JsonSerialize
+
+Pour le jsonSerialize, on utilise un array $serializeObject permettant de passer les différents éléments que nous souhaitons exploiter de la base de donnée au json_encode.
+
+exemple :
+
+``` php
+
+$serializedObject = [
+            "mamie" => $this->mamie,
+            "age" => $this->age,
+        ];
+        // et je renvoi ce tableau
+        return $serializedObject;
+```
+Pour le findAdmin, pas d'aide particulière, c'est assez compliqué mais vous savez le faire. On fait notre requête à l'aide des paramètres récupéré, on fetchAll et on retourne ce fetAll.
+
+<details><summary>réponse</summary>
+
+MainController : 
+
+``` php
+<?php
+
+namespace ocook\Controllers;
+
+
+
+class MainController
+{
+    // Cette fonction nous permet d'envoyer la reponse de la requete utilisateur sous forme d'un echaine de caractere encodée en JSON
+    public function sendJson($data)
+    {
+        // en entrée on recoit dans la variable $data les données à encoder et envoyer au client
+        // on transforme $data en JSON
+        $jsonString = json_encode($data);
+        // j'envoi un header pour dire au client que je vais lui repondre en JSON
+        header('content-type:application/json');
+        // on va envoyer la reponse au format JSON
+        echo $jsonString;
+    }
+}
+
+```
+
+UserController : 
+
+``` php
+<?php
+
+namespace ocook\Controllers;
+
+use ocook\Models\UserModel;
+
+// vrai nom c'est oKanban\Controllers\ListController
+class UserController extends MainController
+{
+    public function admin($param)
+    {
+        if (isset($_GET['name']) &&
+        isset($_GET['password'])
+        ) {
+            $name = $_GET['name'];
+            $password = $_GET['password'];
+            $admin = UserModel::findAdmin($name, $password);
+            // j'utilise la fonction showJson de la classe mere MainController pour envoyer les données au client
+            $this->sendJson($admin);
+        } else {
+            echo "error";
+        }
+    }
+}
+```
+
+MainModel : 
+
+``` php
+<?php
+
+namespace ocook\Models;
+
+use JsonSerializable;
+use ocook\Utils\Database;
+use PDO;
+
+abstract class MainModel implements JsonSerializable
+{
+    static protected $tableName;
+
+    // une methode abstract permet d'obliger les enfant de cette classe a declarer une methode find($id)
+    abstract public function findAdmin($name, $password);
+}
+```
+
+UserModel : 
+
+``` php
+<?php
+
+namespace ocook\Models;
+
+use ocook\Utils\Database;
+use PDO;
+
+class UserModel extends MainModel
+{
+    protected static $tableName = 'users';
+
+    public function jsonSerialize()
+    {
+        // je crée mon tableau associatif avec toute les données de mon objet car je souhaite tout serialiser
+        // ca ne serait pas le cas par exmeple si mon objet contenait un mot de passe
+        $serializedObject = [
+            "name" => $this->name,
+            "rank" => $this->rank,
+        ];
+        // et je renvoi ce tableau
+        return $serializedObject;
+    }
+
+    public function findAdmin($name, $password)
+    {
+
+        
+        $sql = "SELECT `name`, `password`, `rank` FROM `users` WHERE `name` = :name AND `password` = SHA1(:password)";
+
+        $pdo = Database::getPDO();
+
+        $pdoStatement = $pdo->prepare($sql);
+
+        $pdoStatement->bindParam(":name", $name, PDO::PARAM_STR);
+        $pdoStatement->bindParam(":password", $password, PDO::PARAM_STR);
+
+        $pdoStatement->execute();
+
+        $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, self::class);
+
+        return $results;
+
+    }
+}
+
+```
+
+</details>
+</details>
+
+
+
+
+
+#### 2 : Les models
 
 <details><summary>Aide</summary>
 

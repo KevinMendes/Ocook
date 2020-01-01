@@ -103,6 +103,7 @@ let app = {
         $('.is-active').removeClass('is-active').addClass('is-inactive');
         // On rajoute la classe is-active à notre main
         $('.main-page').removeClass('is-inactive').addClass('is-active');
+        $(app.loadingEvent);
 
 
     }
