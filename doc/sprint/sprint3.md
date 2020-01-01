@@ -461,39 +461,14 @@ On doit vérifier dans notre controller que name et password ont bien été rens
 Le controlleur devra récupérer les infos saisie en $_POST
 On passe en paramètre name et password à la fonction findAdmin. On oublie pas que nous voulons récupérer un json.
 
-On va créer un MainModel et un UserModel.
-Le main model permettra de faire hérité les autres models du USE PDO, mais permettra aussi de nous obliger à fournir certains élément. On va commencer par créer notre classe en abstract avec un implements JsonSerializable, permettra de nous forcer à faire un json_encode() (que nous avons déjà fait dans notre MainController), si ça n'est pas fait, une fatal erreure sera retournée. Ensuite un abstract de la fonction findAdmin, afin de nous forcer à créer findAdmin, sinon fatal error aussi.
-Enfin nous puisque ce Model servira de donnateur à nos models qui en hériterons, nous créerons une petite variable nous permettant de récupérer la table sur la quelle nous travaillons, afin de pouvoir hériter correctement des fonctions communes si il y en a. (Spoiler, il n'y en aura pas, alors si vous voyez pas comment faire c'est que du bonus)
 
-Le modèle UserModel s'occupera de faire la requête SQL et de renvoyer un tableau.
-Dû au JsonSerialize, nous devont créer une méthod permettant à notre BaseControler de faire le json_encode(), que nous appelerons JsonSerialize().
-On oublie pas de se lier à la BDD avec un use.
-Il faudra alors aussi créer la method findAdmin (dû à l'abstract), faire notre requête, et faire un return du tableau.
-
-/!\ On oublie pas les namespaces /!\
 <details><summary>Aide</summary>
 
-Sur la route allez voir du côté de "methodName =>" pour utiliser les bons nom de methodes.
+
+Pour la route allez voir du côté de "methodName =>" pour utiliser les bons nom de methodes.
 
 Les isset permette de vérifier que les champs sont biens passés.
-Pour le MainModel, on fait un use de JsonSerializable, un use de ocook\Utils\Database
-On fait aussi un use PDO, afin de le transmettre à tous les héritiers.
-Enfin on déclare la classe en abstract class et avec un implements de JsonSerialize
 
-Pour le jsonSerialize, on utilise un array $serializeObject permettant de passer les différents éléments que nous souhaitons exploiter de la base de donnée au json_encode.
-
-exemple :
-
-``` php
-
-$serializedObject = [
-            "mamie" => $this->mamie,
-            "age" => $this->age,
-        ];
-        // et je renvoi ce tableau
-        return $serializedObject;
-```
-Pour le findAdmin, pas d'aide particulière, c'est assez compliqué mais vous savez le faire. On fait notre requête à l'aide des paramètres récupéré, on fetchAll et on retourne ce fetAll.
 
 <details><summary>réponse</summary>
 
@@ -552,6 +527,54 @@ class UserController extends MainController
 }
 ```
 
+</details>
+</details>
+
+
+
+
+
+#### 2 : Les models
+
+
+/!\ Ca va être la phase la plus complexe; alors faites cette partie bien reposés! /!\
+
+On va créer un MainModel et un UserModel.
+Le main model permettra de faire hérité les autres models du USE PDO, mais permettra aussi de nous obliger à fournir certains élément. On va commencer par créer notre classe en abstract avec un implements JsonSerializable, permettra de nous forcer à faire un json_encode() (que nous avons déjà fait dans notre MainController), si ça n'est pas fait, une fatal erreure sera retournée. Ensuite un abstract de la fonction findAdmin, afin de nous forcer à créer findAdmin, sinon fatal error aussi.
+Enfin nous puisque ce Model servira de donnateur à nos models qui en hériterons, nous créerons une petite variable nous permettant de récupérer la table sur la quelle nous travaillons, afin de pouvoir hériter correctement des fonctions communes si il y en a. (Spoiler, il n'y en aura pas, alors si vous voyez pas comment faire c'est que du bonus)
+
+Le modèle UserModel s'occupera de faire la requête SQL et de renvoyer un tableau.
+Dû au JsonSerialize, nous devont créer une méthod permettant à notre BaseControler de faire le json_encode(), que nous appelerons JsonSerialize().
+On oublie pas de se lier à la BDD avec un use.
+Il faudra alors aussi créer la method findAdmin (dû à l'abstract), faire notre requête, et faire un return du tableau.
+
+/!\ On oublie pas les namespaces /!\
+
+
+<details><summary>Aide</summary>
+
+Pour le MainModel, on fait un use de JsonSerializable, un use de ocook\Utils\Database
+On fait aussi un use PDO, afin de le transmettre à tous les héritiers.
+Enfin on déclare la classe en abstract class et avec un implements de JsonSerialize
+
+Pour le jsonSerialize, on utilise un array $serializeObject permettant de passer les différents éléments que nous souhaitons exploiter de la base de donnée au json_encode.
+
+exemple :
+
+``` php
+
+$serializedObject = [
+            "mamie" => $this->mamie,
+            "age" => $this->age,
+        ];
+        // et je renvoi ce tableau
+        return $serializedObject;
+```
+Pour le findAdmin, pas d'aide particulière, c'est assez compliqué mais vous savez le faire. On fait notre requête à l'aide des paramètres récupéré, on fetchAll et on retourne ce fetAll.
+
+<details><summary>réponse</summary>
+
+
 MainModel : 
 
 ``` php
@@ -572,7 +595,7 @@ abstract class MainModel implements JsonSerializable
 }
 ```
 
-UserModel : 
+UserModel :
 
 ``` php
 <?php
@@ -622,25 +645,18 @@ class UserModel extends MainModel
 
 ```
 
-</details>
-</details>
-
-
-
-
-
-#### 2 : Les models
-
-<details><summary>Aide</summary>
-
-
-<details><summary>réponse</summary>
-
 
 </details>
 </details>
 
 ### Sous-étape 6 : Création du form de login + adaptation de l'app JS
+
+A partir d'ici on va arrêter de bosser sur la branche backoffice, puisqu'on passe sur le front. 
+
+Si tout fonctionne on va alors merge ce travail sur notre branche de pre_prod. git checkout pre_prod pour bouger, et git merge backoffice pour fusionner le travail. 
+
+On va rebasculer sur notre branche routeur, qui elle ne dispose pas du travail du backoffice, on va donc également merge. git checkout routeur puis git merge pre_prod
+
 
 
 
@@ -665,72 +681,7 @@ class UserModel extends MainModel
 
 </details>
 </details>
-## Etape 3 : Remplacer le list.json par notre API
 
-</details>
-</details>
+# BRAVO
 
-<details><summary>Aide</summary>
-
-
-<details><summary>réponse</summary>
-
-
-</details>
-</details>
-### Sous-étape 1: Ajout de routes dans la doc
-
-</details>
-</details>
-
-<details><summary>Aide</summary>
-
-
-<details><summary>réponse</summary>
-
-
-</details>
-</details>
-### Sous-étape 2: Création des routes sur l'API
-
-</details>
-</details>
-
-<details><summary>Aide</summary>
-
-
-<details><summary>réponse</summary>
-
-
-</details>
-</details>
-### Sous-étape 3: Création des models et controllers nécessaire
-
-</details>
-</details>
-
-<details><summary>Aide</summary>
-
-
-<details><summary>réponse</summary>
-
-
-</details>
-</details>
-
-### Sous-étape 4: Modification de l'app JS
-
-</details>
-</details>
-
-<details><summary>Aide</summary>
-
-
-<details><summary>réponse</summary>
-
-
-</details>
-</details>
-
-
-
+Ce sprint qui fait pleurer du sang est terminé! On part en route vers le dernier sprint! 
