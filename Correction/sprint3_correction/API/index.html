@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Ocook</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+            <a class="navbar-brand" href="index.html"><span class="text-light">O</span><span
+                    class="text-success bg-light border border-left-0 border rounded-circle">cook</span></a>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Viandes
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Boeuf</a>
+                            <a class="dropdown-item" href="#">Poulet</a>
+                            <a class="dropdown-item" href="#">Tofu</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-success border-white admin-panel" data-toggle="modal"
+                            data-target="#admin-access">Administrateur</button>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
+        <!-- affichage des résumés de recette-->
+        <section>
+            <div>
+                <div class="is-active main-page">
+                    <div class="container mx-auto my-4">
+                        <div class="row d-flex justify-content-around" id="tpl">
+
+                        </div>
+                    </div>
+
+                </div>
+        </section>
+        <!-- affichage de la recette -->
+        <section id="recipe-tpl">
+
+        </section>
+        <!-- affichage de la page admin-->
+        <section id="admin-tpl">
+
+        </section>
+<!-- MODAL CONNEXION-->
+        <div class="modal" id="admin-access" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center">Connexion</h5>
+                    </div>
+                    <form class="p-2">
+                        <div class="form-group">
+                            <label for="name">Pseudo</label>
+                            <input type="name" class="form-control" id="name" aria-describedby="emailHelp"
+                                placeholder="Pseudo">
+                            <small id="nameHelp" class="form-text text-muted">User : ocook</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Password">
+                            <small id="passwordHelp" class="form-text text-muted">Password : ocook</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary connect" value="submit">Envoyer</button>
+                        <button type="button connection-close" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+                <!-- MODAL BON APPETIT-->
+        <div class="modal" id="bonAppetitModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Bon appétit!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary mainDisplay" data-dismiss="modal">Retour à la
+                            page d'accueil</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-dark mb-0">
+        <p class="text-light text-center mb-0 pt-2 pb-1">© 2076 Gandalf le Cuisto</p>
+    </footer>
+    <!-- END OF FOOTER-->
+    <!-- Bootstrap CDN-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <!-- jQuery CDN-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- homemade script-->
+    <script src="app/app.js"></script>
+</body>
+
+<!-- affichage des 6 recettes-->
+<template id="main-template">
+    <div class="card col-lg-3 m-2 resume-card">
+        <img class="card-img-top center mt-1" alt="Churos">
+        <div class="card-body">
+            <h5 class="card-title">Tarte à la claque</h5>
+
+            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                iure
+                consequatur aperiam repudiandae ipsam exercitationem dolorum rem quaerat vitae
+                officia?
+                content.</p>
+            <a href="#" class="btn btn-primary recipeAccess" id="recipe-">Voir la recette</a>
+        </div>
+    </div>
+</template>
+<!-- Affichage de la page recette -->
+<template id="recipe-template">
+    <div class="is-inactive recipe-page">
+        <div class="card border-success mx-auto my-4 w-75">
+            <div class="card-header bg-success">Recette : dev en sauce</div>
+            <div class="card-body">
+
+                <h5 class="card-title">Préparation des ingrédients</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <p class="card-text prepare">Etape 1 : Emincer un helper</p>
+                </li>
+            </ul>
+            <div class="card-body mx-auto">
+                <button type="button" class="btn btn-success ingredients">C'est fait</button>
+            </div>
+
+
+            <div class="card-body">
+                <h5 class="card-title">Cuisson</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item cook">Etape 1 : Mettre la préparation dans une vessie de jument</li>
+
+            </ul>
+            <div class="card-body mx-auto">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#bonAppetitModal">C'est
+                    fait</button>
+            </div>
+        </div>
+    </div>
+</template>
+<!-- affichage de la page admin-->
+<template id="admin-template">
+    <div>
+        <button type="button" class="btn btn-danger">Supprimer</button>
+        <button type="button" class="btn btn-primary">Ajouter</button>
+    </div>
+</template>
+
+</html>

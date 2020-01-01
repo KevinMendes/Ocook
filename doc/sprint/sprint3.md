@@ -845,6 +845,6 @@ Si ça fail, afficher un message d'erreur.
 
 # BRAVO
 
-On peut aller fièrement sur trello et boucler ce sprint!
+On peut aller fièrement sur trello et boucler ce sprint, et on merge ça sur pre_prod!
 
 Ce sprint qui fait pleurer du sang est terminé! On part en route vers le dernier sprint! 
