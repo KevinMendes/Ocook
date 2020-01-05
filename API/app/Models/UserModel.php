@@ -9,6 +9,7 @@ class UserModel extends MainModel
 {
     protected static $tableName = 'users';
 
+
     public function jsonSerialize()
     {
         // je crée mon tableau associatif avec toute les données de mon objet car je souhaite tout serialiser

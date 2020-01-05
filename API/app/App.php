@@ -26,65 +26,57 @@ class App
     private function initRoutes()
     {
 
-        // $this->router->map(
-        //     "GET",
-        //     "/recipe",
-        //     [
-        //         "controllerName" => RecipeController::class, "methodName" => "recipe"
-        //     ],
-        //     "recipe"
-        // );
+        $this->router->map(
+            "GET",
+            "/recipe",
+            [
+                "controllerName" => RecipeController::class, "methodName" => "recipe"
+            ],
+            "recipe"
+        );
 
-        // $this->router->map(
-        //     "POST",
-        //     "/recipe/add",
-        //     [
-        //         "controllerName" => RecipeController::class, "methodName" => "recipeCreate"
-        //     ],
-        //     "recipe-add"
-        // );
-        // $this->router->map(
-        //     "GET",
-        //     "/recipe/[i:id]/delete",
-        //     [
-        //         "controllerName" => RecipeController::class, "methodName" => "recipeDelete"
-        //     ],
-        //     "recipe-delete"
-        // );
+        $this->router->map(
+            "POST",
+            "/recipe/add",
+            [
+                "controllerName" => RecipeController::class, "methodName" => "recipeCreate"
+            ],
+            "recipe-add"
+        );
+        $this->router->map(
+            "GET",
+            "/recipe/[i:id]/delete",
+            [
+                "controllerName" => RecipeController::class, "methodName" => "recipeDelete"
+            ],
+            "recipe-delete"
+        );
 
-        // $this->router->map(
-        //     "POST",
-        //     "/recipe/[i:id]/update",
-        //     [
-        //         "controllerName" => RecipeController::class, "methodName" => "recipeUpdate"
-        //     ],
-        //     "recipe-update"
-        // );
-        // $this->router->map(
-        //     "GET",
-        //     "/recipe/main",
-        //     [
-        //         "controllerName" => RecipeController::class, "methodName" => "recipeMain"
-        //     ],
-        //     "recipe-main"
-        // );
-        // $this->router->map(
-        //     "GET",
-        //     "/recipe/ingredient",
-        //     [
-        //         "controllerName" => RecipeController::class, "methodName" => "recipeIngredient"
-        //     ],
-        //     "recipe-ingredient"
-        // );
-// 
-        // $this->router->map(
-        //     "GET",
-        //     "/recipe/[i:id]/cook",
-        //     [
-        //         "controllerName" => RecipeController::class, "methodName" => "cook"
-        //     ],
-        //     "recipe-cook"
-        // );
+        $this->router->map(
+            "GET",
+            "/recipe/main",
+            [
+                "controllerName" => RecipeController::class, "methodName" => "recipeMain"
+            ],
+            "recipe-main"
+        );
+        $this->router->map(
+            "GET",
+            "/recipe/ingredient",
+            [
+                "controllerName" => RecipeController::class, "methodName" => "recipeIngredient"
+            ],
+            "recipe-ingredient"
+        );
+
+        $this->router->map(
+            "GET",
+            "/recipe/[i:id]/cook",
+            [
+                "controllerName" => RecipeController::class, "methodName" => "cook"
+            ],
+            "recipe-cook"
+        );
 
 
         $this->router->map(

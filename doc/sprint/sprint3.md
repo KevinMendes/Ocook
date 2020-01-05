@@ -668,7 +668,6 @@ Si tout fonctionne on va alors merge ce travail sur notre branche de pre_prod. g
 
 On va rebasculer sur notre branche routeur, qui elle ne dispose pas du travail du backoffice, on va donc également merge. git checkout routeur puis git merge pre_prod
 
-
 On va commencer par créer sur notre document HTML un bouton de connexion, et le form sera dans une modale. Ce bouton aura une bordure blanche, l'intérieur de la couleur de la navbar et aura une class "admin-panel", ce bouton devra ouvrir la modal. Ce bouton doit être dans le dropdown menu sur les petits ecrans. La modal devra avoir la class admin-access. Pour finir le bouton du form aura la class "connect". Et on ajoute sur la modal un bouton permettant de fermer la modale avec la class "connection-close".
 
 On rajoute aussi une section avec l'id "admin-tpl"
@@ -848,3 +847,5 @@ Si ça fail, afficher un message d'erreur.
 On peut aller fièrement sur trello et boucler ce sprint, et on merge ça sur pre_prod!
 
 Ce sprint qui fait pleurer du sang est terminé! On part en route vers le dernier sprint! 
+
+[sprint 4](sprint4.md)
