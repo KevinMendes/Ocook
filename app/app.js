@@ -130,8 +130,8 @@ let app = {
 
                     if (result.rank == "admin") {
                         $('.is-active').removeClass('is-active').addClass('is-inactive');
-                        $('.connection-close').trigger('click')
-                        let adminPanel = $('#admin-template').contents().clone()
+                        $('.connection-close').trigger('click');
+                        let adminPanel = $('#admin-template').contents().clone();
                        $('#admin-tpl').append(adminPanel);
                         $(app.loadingEvent);
                         

@@ -154,15 +154,257 @@ public function insert()
 </details>
 </details>
 
+### Sous-étape 2 : Récupérer toutes les récettes
+
+#### Controllers :
+
+Utiliser la bonne méthode de l'objet RecipeModel et renvoyer un json
+
+
+
+
+<details><summary>réponse</summary>
+
+``` php
+public function recipe(){
+        $recipes = RecipeModel::findAll();
+        $this->sendJson($recipes);
+    }
+```
+
+</details>
+
+#### Models :
+
+Effectuez une requête simple permettant de récupérer toute la table triée par date, la plus jeune en premier.
+
+<details><summary>réponse</summary>
+
+```php
+public function findAll(){
+        $sql = "SELECT * FROM recipe ORDER BY create_at DESC";
+        $pdo = Database::getPDO();
+
+        $pdoStatement = $pdo->query($sql);
+        $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, self::class);
+
+        return $results;
+    }
+```
+
+</details>
+
+### Sous-étape 3 : Supprimer une recette
+
+Notre méthode de controller devra dans une premier temps, récupérer l'id qui lui est passée, puis utiluse la méthode "find" du modèle pour trouver la ligne de la BDD en question, et enfin, utiliser la méthode "delete" de notre modèle pour supprimer cette ligne.
+
+Il y aura donc 2 méthodes dans notre model à créer.
+
+
+
+#### Controller : 
+
+<details><summary>Aide</summary>
+
+Pas besoin de json ici puisqu'on supprime, il y aura donc rien à renvoyer si ce n'est à la limite un "success".
+
+On devra récupérer l'id en parametre (CF: notre route). On utilisera la méthode find de l'objet RecipeModel, au quel nous passeront en arguement l'id. Puis la méthode delete.  
+<details><summary>réponse</summary>
+
+```php
+ public function recipeDelete($params)
+    {
+        $recipeId = $params['id'];
+
+        $recipe = RecipeModel::find($recipeId);
+        // j'envoi cette recipee au client grace a la methode sendJson()
+        $recipe->delete();
+    }
+```
+
+</details>
+</details>
+
+#### Model : 
+
+<details><summary>Aide</summary>
+La méthode find devra utiliser l'id qui lui sera passé en paramètre récupéré par la méthode. La méthode est très proche de find all. On oublie pas de faire un prepare pour éviter d'éventuelle injection SQL.
+
+Pour la méthode delete, à l'aide du verb SQL DELETE on supprimera la ligne de la table recipe, ou l'id = :id (une fois de plus on utilise prepare pour se protéger).
+
+<details><summary>réponse</summary>
+
+``` php
+    public function find($id)
+    {
+        $sql = "SELECT * FROM recipe WHERE id = :id";
+        $pdo = Database::getPDO();
+        $pdoStatement = $pdo->prepare($sql);
+        $pdoStatement->bindParam(":id", $id, PDO::PARAM_INT);
+        $pdoStatement->execute();
+        return $pdoStatement->fetchObject(self::class);
+    }
+
+    public function delete()
+    {
+        // SQL
+        $sql = "DELETE FROM recipe WHERE id = :id";
+        // Prepare
+        $pdo = Database::getPDO();
+        $pdoStatement = $pdo->prepare($sql);
+        // BindParam
+        $pdoStatement->bindParam(":id", $this->id, PDO::PARAM_INT);
+        // EXEC
+        $pdoStatement->execute();
+        if ($pdoStatement->rowCount() === 1) {
+            // Si une ligne a bien été effacé je renvoie vrai
+            return true;
+        } else {
+            // sinon je renvoi FAUX
+            return false;
+        }
+    }
+```
+
+</details>
+</details>
+
+### Sous-étape 4 : Recipe/main
+
+Rien de très différent de findAll, on fera juste attention à n'en récupérer que 6, la méthode s'appelera donc find6. On peut tout récupérer dedans! On s'en fiche de trier, notre json nous permettra de faire le tri avec l'app-front, et ça nous évitera de devoir modifier l'app back si un jour on en veut plus.
+
+### Controller : 
+
+Une aide serait une réponse ! 
+
+<details><summary>réponse</summary>
+
+C'est exactement pareil que findAll, mais en le remplaçant par find6.
+
+``` php
+
+    public function recipeMain(){
+        $recipe = RecipeModel::find6();
+        $this->sendJson($recipe);
+    }
+
+```
+
+</details>
+
+
+
+### Models
+
+Presque exactement comme findAll.
+
+<details><summary>Aide</summary>
+
+LIMIT 6
+<details><summary>réponse</summary>
+
+``` php
+ public function find6(){
+        $sql = "SELECT * FROM recipe ORDER BY create_at DESC LIMIT 6";
+        $pdo = Database::getPDO();
+
+        $pdoStatement = $pdo->query($sql);
+        $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, self::class);
+
+        return $results;
+    }
+```
+
+</details>
+</details>
+
+### Sous-étape 5: /recipe/[a:ingredient]/ingredient
+
+Comme le find! On a l'habitude maintenant.
+Maintenant plus d'aide, que la correction.
+
+On aura besoin d'une méthode recipesIngredients pour le controller et findIngredients pour le model.
+
+<details><summary>réponse</summary>
+
+COntroller :
+
+``` php
+public function recipesIngredients($params)
+    {
+        $recipeIngredient = $params['ingredient'];
+        // recupérer le model qui correspond a la table que je veux interoger
+        $recipes = RecipeModel::findIngredients($recipeIngredient);
+        // j'utilise la fonction showJson de la classe mere BaseController pour envoyer les données au client
+        $this->sendJson($recipes);
+    }
+```
+
+Model : 
+
+``` php
+public function findIngredients($recipeIngredient)
+    {
+
+        $sql = "SELECT * FROM recipe WHERE ingredients = :ingredients";
+        $pdo = Database::getPDO();
+        $pdoStatement = $pdo->prepare($sql);
+        $pdoStatement->bindParam(":ingredients", $recipeIngredient, PDO::PARAM_STR);
+        $pdoStatement->execute();
+        $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, self::class);
+        return $results;
+    }
+```
+
+</details>
+
+
+### Sous-étape 6: /recipe/[i:id]/cook
+
+Encore pareil que le model ! :) 
+
+On aura besoin d'une méthode cook pour le controller, et findCook pour le model.
+
+
+<details><summary>réponse</summary>
+
+COntroller : 
+
+```php
+ public function cook($params){
+
+        $recipeId = $params['id'];
+        // recupérer le model qui correspond a la table que je veux interoger
+        $recipes = RecipeModel::findCook($recipeId);
+        // j'utilise la fonction showJson de la classe mere BaseController pour envoyer les données au client
+        $this->sendJson($recipes);
+    }
+```
+
+Model : 
+
+```php
+public function findCook($id)
+    {
+
+        $sql = "SELECT * FROM recipe WHERE id = :id";
+        $pdo = Database::getPDO();
+        $pdoStatement = $pdo->prepare($sql);
+        $pdoStatement->bindParam(":id", $id, PDO::PARAM_STR);
+        $pdoStatement->execute();
+        $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, self::class);
+        return $results;
+    }
+```
+
+</details>
+
 
 ### Sous-étape 4: Modification de l'app JS
 
 Quand on clic sur supprimer la liste de nos recettes avec un bouton delete.
 
 Quand on clic sur le bouton ajouter un form permettant d'ajouter un titre, une image, un menu déroulant permettant de choisir son ingrédient, une textarea pour la partie préparation, et une textarea pour ajouter la cook.
-</details>
-</details>
-
 <details><summary>Aide</summary>
 
 
@@ -174,3 +416,14 @@ Quand on clic sur le bouton ajouter un form permettant d'ajouter un titre, une i
 
 
 
+<details><summary>réponse</summary>
+
+COntroller : 
+
+```php
+```
+
+```php
+```
+
+</details>

@@ -62,9 +62,9 @@ class App
         );
         $this->router->map(
             "GET",
-            "/recipe/ingredient",
+            "/recipe/[a:ingredient]/ingredient",
             [
-                "controllerName" => RecipeController::class, "methodName" => "recipeIngredient"
+                "controllerName" => RecipeController::class, "methodName" => "recipesIngredients"
             ],
             "recipe-ingredient"
         );

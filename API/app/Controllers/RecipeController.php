@@ -6,10 +6,16 @@ use ocook\Models\RecipeModel;
 // vrai nom c'est oKanban\Controllers\recipeController
 class RecipeController extends MainController
 {
+
+    public function recipe(){
+        $recipes = RecipeModel::findAll();
+        $this->sendJson($recipes);
+    }
     public function recipesIngredients($params)
     {
+        $recipeIngredient = $params['ingredient'];
         // recupérer le model qui correspond a la table que je veux interoger
-        $recipes = RecipeModel::findIngredients();
+        $recipes = RecipeModel::findIngredients($recipeIngredient);
         // j'utilise la fonction showJson de la classe mere BaseController pour envoyer les données au client
         $this->sendJson($recipes);
     }
@@ -40,24 +46,28 @@ class RecipeController extends MainController
             "id" => $recipe->getId()
         ]);
     }
-    //permet de recupérer une recipe grace a son id
-    // public function recipeDelete($params)
-    // {
-    //     $recipeId = $params['id'];
-    //     $recipe = RecipeModel::find($recipeId);
-    //     // j'envoi cette recipee au client grace a la methode sendJson()
-    //     $this->sendJson($recipe);
-    // }
-    public function recipeMain($params)
+
+    public function recipeDelete($params)
     {
+        $recipeId = $params['id'];
+
+        $recipe = RecipeModel::find($recipeId);
+        // j'envoi cette recipee au client grace a la methode sendJson()
+        $recipe->delete();
     }
-    // public function cook($params)
-    // {
-    //     // Je recupère l'id de la recipee à supprimer depuis les parametres de la route
-    //     $id = $params['id'];
-    //     // je recupère la recipee à supprimer grace à la methode static de la classe RecipeModel
-    //     $recipe = RecipeModel::find($id);
-    //     // je suprime cette recipee de la BDD
-    //     $recipe->delete();
-    // }
+
+    public function recipeMain(){
+        $recipe = RecipeModel::find6();
+        $this->sendJson($recipe);
+    }
+
+    public function cook($params){
+
+        $recipeId = $params['id'];
+        // recupérer le model qui correspond a la table que je veux interoger
+        $recipes = RecipeModel::findCook($recipeId);
+        // j'utilise la fonction showJson de la classe mere BaseController pour envoyer les données au client
+        $this->sendJson($recipes);
+    }
+
 }

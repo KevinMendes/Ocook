@@ -351,9 +351,9 @@ class App
         );
         $this->router->map(
             "GET",
-            "/recipe/ingredient",
+            "/recipe/[a:ingredient]/ingredient",
             [
-                "controllerName" => RecipeController::class, "methodName" => "recipeIngredient"
+                "controllerName" => RecipeController::class, "methodName" => "RecipeIngredient"
             ],
             "recipe-ingredient"
         );
@@ -408,11 +408,10 @@ class App
 
 Nous allons créer 2 nouveaux dossier dans app : Controllers et Models.
 
-JSON + SESSION + COOKIE ? $.get(mapagephp, function(data){ var bidule = ma var})
-
 #### 1 : Les controllers
 
 ##### HS Technique :
+
 Pour ceux qui ont du mal avec l'utilité du MVC, une tentative d'explication : 
 
 La vue va gérer l'affichage de la page (donc chez nous notre vue est notre app front! :))
@@ -736,7 +735,7 @@ Modal
                             <small id="passwordHelp" class="form-text text-muted">Password : ocook</small>
                         </div>
                         <button type="submit" class="btn btn-primary connect" value="submit">Envoyer</button>
-                        <button type="button connection-close" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button type="button" class="btn btn-secondary connection-close" data-dismiss="modal">Fermer</button>
                         </div>
                     </form>
                 </div>
