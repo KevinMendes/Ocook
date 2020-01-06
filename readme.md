@@ -1,7 +1,7 @@
 # Ocook
 Création d'un site factice regroupant des recettes de cuisine. Ce projet est à but éducatif. Ce cours est à destination des étudiants de l'école Oclock
 
-Objectif : Assimiler git et github, comprendre et utiliser la POO, les API Rest, les requêtes AJAX, JQuery, html & css, bootstrap, SQL via phpmyadmin, structure MVC, méthodologie AGILE, SPA et quelques élements de composer. (altorooter principalement)
+Objectif : Assimiler git et github, comprendre et utiliser la POO, les API Rest, les requêtes AJAX, JQuery, html & css, bootstrap, SQL via phpmyadmin, la sécurisation des requêtes SQL, structure MVC, méthodologie AGILE, SPA, routing, et quelques élements de composer. (altorooter principalement)
 
 ## Avant propos
 Prérequis

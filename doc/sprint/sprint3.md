@@ -556,7 +556,9 @@ Avec des conditions on gère si jamais le mdp ou le pseudo sont faux.
 
 Pour le MainModel, on fait un use de JsonSerializable, un use de ocook\Utils\Database
 On fait aussi un use PDO, afin de le transmettre à tous les héritiers.
-Enfin on déclare la classe en abstract class et avec un implements de JsonSerialize
+Enfin on déclare la classe en abstract class et avec un implements de JsonSerialize.
+
+Nous allons utiliser ->prepare() et bindParam->() afin de sécuriser notre site. EN effet avec cette petite manip, les users mal intentionnés ne pourront pas passer par nos models pour effectuer des injections SQL.
 
 Pour le jsonSerialize, on utilise un array $serializeObject permettant de passer les différents éléments que nous souhaitons exploiter de la base de donnée au json_encode.
 

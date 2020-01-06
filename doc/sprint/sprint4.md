@@ -84,7 +84,7 @@ Il faudra créer un objet RecipeModel, afin d'utiliser les getters et setters cr
 /!\ Une fois le Modèle et le controller créé, vous pourrez utiliser postman pour vérifier que ton fonctionne. COllez le lien dans la barre d'url du logiciel, passez bien le verbe http en "POST", et allez dans l'onglet "body". Selectionnez "form-data" puis remplissez les champs Key avec les noms définie dans votre controller, et avec les valeurs de votre choix. Si un json vous est renvoyé c'est que ça fonctionne. /!\
 
 Il faudra éxécuter la requête SQL ici.  On prépare bien son JSON serialize (dans réponse).
-On fait une méthode insert qui permet de passer les données saisies en BDD. On peut utiliser "bindParam" pour faciliter l'écriture de la requête SQL. Rien de très différent que ce qu'on a put faire pour la connexion admin, si ce n'est l'utiliser d' "INSERT".
+On fait une méthode insert qui permet de passer les données saisies en BDD. On peut utiliser "bindParam" pour sécuriser la requête SQL. Rien de très différent que ce qu'on a put faire pour la connexion admin, si ce n'est l'utiliser d' "INSERT".
 
 <details><summary>Aide</summary>
 
